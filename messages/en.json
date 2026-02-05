@@ -1,0 +1,301 @@
+{
+  "common": {
+    "next": "Continue",
+    "back": "Back",
+    "submit": "Submit Application",
+    "save": "Save Progress",
+    "cancel": "Cancel",
+    "required": "Required",
+    "optional": "Optional",
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "success": "Success",
+    "yes": "Yes",
+    "no": "No",
+    "select": "Select an option",
+    "upload": "Upload",
+    "remove": "Remove",
+    "preview": "Preview",
+    "close": "Close"
+  },
+  "header": {
+    "title": "UK ETA Application",
+    "subtitle": "Electronic Travel Authorisation Service",
+    "securityBadge": "256-bit Encrypted",
+    "support": "Need help?"
+  },
+  "progress": {
+    "step": "Step {current} of {total}",
+    "passport": "Passport",
+    "personal": "Personal",
+    "contact": "Contact",
+    "photo": "Photo",
+    "background": "Background",
+    "address": "Address",
+    "emergency": "Emergency",
+    "review": "Review & Pay"
+  },
+  "passport": {
+    "title": "Passport Details",
+    "description": "Enter your passport information exactly as it appears on your travel document.",
+    "country": "Passport Issuing Country",
+    "countryPlaceholder": "Select your passport country",
+    "number": "Passport Number",
+    "numberPlaceholder": "Enter your passport number",
+    "numberHelp": "Found on the information page of your passport",
+    "issueDate": "Date of Issue",
+    "expiryDate": "Expiry Date",
+    "expiryHelp": "Passport must be valid for at least 6 months",
+    "authority": "Issuing Authority",
+    "authorityPlaceholder": "e.g., IPS, UKPA, or issuing office name",
+    "photo": "Passport Photo Page",
+    "photoDescription": "Upload a clear photo or scan of your passport's information page",
+    "photoRequirements": "Requirements: Clear image, all text readable, no glare",
+    "uploadButton": "Click to upload or drag and drop",
+    "uploadFormats": "PNG, JPG or PDF (max. 5MB)",
+    "errors": {
+      "countryRequired": "Please select your passport country",
+      "numberRequired": "Passport number is required",
+      "numberInvalid": "Please enter a valid passport number",
+      "issueDateRequired": "Issue date is required",
+      "issueDateFuture": "Issue date cannot be in the future",
+      "expiryRequired": "Expiry date is required",
+      "expiryPast": "Your passport has expired",
+      "expiryTooSoon": "Passport must be valid for at least 6 months",
+      "authorityRequired": "Issuing authority is required",
+      "photoRequired": "Passport photo page is required"
+    }
+  },
+  "personal": {
+    "title": "Personal Details",
+    "description": "Enter your details exactly as they appear on your passport.",
+    "firstName": "First Name(s)",
+    "firstNamePlaceholder": "As shown on passport",
+    "lastName": "Last Name / Family Name",
+    "lastNamePlaceholder": "As shown on passport",
+    "dateOfBirth": "Date of Birth",
+    "gender": "Gender",
+    "genderMale": "Male",
+    "genderFemale": "Female",
+    "genderOther": "Other / Unspecified",
+    "nationality": "Nationality",
+    "nationalityPlaceholder": "Select your nationality",
+    "birthCountry": "Country of Birth",
+    "birthCountryPlaceholder": "Select your country of birth",
+    "errors": {
+      "firstNameRequired": "First name is required",
+      "lastNameRequired": "Last name is required",
+      "dobRequired": "Date of birth is required",
+      "dobFuture": "Date of birth cannot be in the future",
+      "genderRequired": "Please select your gender",
+      "nationalityRequired": "Nationality is required",
+      "birthCountryRequired": "Country of birth is required"
+    }
+  },
+  "contact": {
+    "title": "Contact Details",
+    "description": "Your ETA decision will be sent to the email address provided.",
+    "email": "Email Address",
+    "emailPlaceholder": "your.email@example.com",
+    "emailHelp": "You will receive your ETA decision at this address",
+    "confirmEmail": "Confirm Email Address",
+    "confirmEmailPlaceholder": "Re-enter your email",
+    "phone": "Mobile Phone Number",
+    "phonePlaceholder": "Enter your phone number",
+    "phoneHelp": "Include country code (e.g., +44 for UK)",
+    "errors": {
+      "emailRequired": "Email address is required",
+      "emailInvalid": "Please enter a valid email address",
+      "emailMismatch": "Email addresses do not match",
+      "phoneRequired": "Phone number is required",
+      "phoneInvalid": "Please enter a valid phone number"
+    }
+  },
+  "photo": {
+    "title": "Identity Photo",
+    "description": "Upload a clear photo of your face for identity verification.",
+    "selfie": "Face Photo / Selfie",
+    "selfieDescription": "This will be matched against your passport photo",
+    "requirements": "Photo Requirements",
+    "requirement1": "Face clearly visible, looking straight at camera",
+    "requirement2": "Plain background, good lighting",
+    "requirement3": "No sunglasses, hats, or face coverings",
+    "requirement4": "Recent photo (taken within last 6 months)",
+    "takePhoto": "Take Photo",
+    "uploadPhoto": "Upload Photo",
+    "retake": "Retake",
+    "errors": {
+      "photoRequired": "Face photo is required",
+      "photoTooLarge": "Photo must be less than 5MB",
+      "photoFormat": "Please upload a JPG or PNG image"
+    }
+  },
+  "background": {
+    "title": "Background Questions",
+    "description": "Please answer the following questions honestly. False information may result in your application being refused.",
+    "disclaimer": "These questions are required by UK immigration authorities. Answer truthfully.",
+    "criminal": {
+      "question": "Have you ever been convicted of a criminal offence in any country?",
+      "help": "Include all convictions, even if considered 'spent' or minor"
+    },
+    "immigration": {
+      "question": "Have you ever breached immigration laws in any country?",
+      "help": "This includes overstaying visas or working without permission"
+    },
+    "refusal": {
+      "question": "Have you ever been refused entry to or deported from any country?",
+      "help": "Include any country, not just the UK"
+    },
+    "terrorism": {
+      "question": "Have you ever been involved in or supported terrorist or extremist activities?",
+      "help": "This includes any form of involvement or support"
+    },
+    "warning": "Providing false information is a criminal offence and may result in prosecution.",
+    "errors": {
+      "criminalRequired": "Please answer the criminal conviction question",
+      "immigrationRequired": "Please answer the immigration breach question",
+      "refusalRequired": "Please answer the refusal/deportation question",
+      "terrorismRequired": "Please answer the terrorism question"
+    }
+  },
+  "address": {
+    "title": "Address Information",
+    "description": "Your current residential address.",
+    "line1": "Address Line 1",
+    "line1Placeholder": "Street address, building name",
+    "line2": "Address Line 2",
+    "line2Placeholder": "Apartment, suite, floor (optional)",
+    "city": "City / Town",
+    "cityPlaceholder": "Enter your city",
+    "state": "State / Province / Region",
+    "statePlaceholder": "Enter your state or region",
+    "postcode": "Postal / ZIP Code",
+    "postcodePlaceholder": "Enter your postal code",
+    "country": "Country of Residence",
+    "countryPlaceholder": "Select your country",
+    "errors": {
+      "line1Required": "Address line 1 is required",
+      "cityRequired": "City is required",
+      "postcodeRequired": "Postal code is required",
+      "countryRequired": "Country is required"
+    }
+  },
+  "emergency": {
+    "title": "Emergency Contact",
+    "description": "Someone we can contact in case of emergency (optional but recommended).",
+    "name": "Contact Name",
+    "namePlaceholder": "Full name of emergency contact",
+    "relationship": "Relationship",
+    "relationshipPlaceholder": "e.g., Spouse, Parent, Friend",
+    "phone": "Contact Phone Number",
+    "phonePlaceholder": "Include country code",
+    "skip": "Skip this step"
+  },
+  "review": {
+    "title": "Review & Submit",
+    "description": "Please review your information carefully before proceeding to payment.",
+    "sections": {
+      "passport": "Passport Details",
+      "personal": "Personal Details",
+      "contact": "Contact Details",
+      "photo": "Identity Photo",
+      "background": "Background Checks",
+      "address": "Address",
+      "emergency": "Emergency Contact"
+    },
+    "edit": "Edit",
+    "notProvided": "Not provided",
+    "consent": {
+      "title": "Declarations & Consent",
+      "accuracy": "I confirm that all information provided is accurate and complete to the best of my knowledge.",
+      "submit": "I consent to this information being submitted to UK authorities on my behalf.",
+      "terms": "I have read and accept the Terms of Service and Privacy Policy.",
+      "dataProcessing": "I understand my data will be processed in accordance with UK GDPR requirements."
+    },
+    "errors": {
+      "accuracyRequired": "You must confirm the accuracy of your information",
+      "submitRequired": "You must consent to submission",
+      "termsRequired": "You must accept the terms and privacy policy",
+      "dataRequired": "You must acknowledge the data processing notice"
+    }
+  },
+  "payment": {
+    "title": "Payment",
+    "description": "Complete your payment to submit your ETA application.",
+    "serviceFee": "ETA Service Fee",
+    "processingFee": "Processing Fee",
+    "total": "Total",
+    "secure": "Secure payment powered by Stripe",
+    "methods": "Apple Pay, Google Pay, and card payments accepted",
+    "processing": "Processing payment...",
+    "success": "Payment successful!",
+    "error": "Payment failed. Please try again.",
+    "submit": "Pay & Submit Application"
+  },
+  "confirmation": {
+    "title": "Application Submitted!",
+    "description": "Your ETA application has been received successfully.",
+    "reference": "Reference Number",
+    "referenceHelp": "Save this number for your records",
+    "email": "A confirmation email has been sent to:",
+    "nextSteps": "What happens next?",
+    "step1": "Our team will review and submit your application to UK authorities",
+    "step2": "You will receive status updates via email",
+    "step3": "Most decisions are made within 3 working days",
+    "status": "Check Application Status",
+    "newApplication": "Start New Application"
+  },
+  "countries": {
+    "GB": "United Kingdom",
+    "US": "United States",
+    "TR": "Turkey",
+    "DE": "Germany",
+    "FR": "France",
+    "IT": "Italy",
+    "ES": "Spain",
+    "NL": "Netherlands",
+    "BE": "Belgium",
+    "AT": "Austria",
+    "CH": "Switzerland",
+    "AE": "United Arab Emirates",
+    "SA": "Saudi Arabia",
+    "QA": "Qatar",
+    "KW": "Kuwait",
+    "BH": "Bahrain",
+    "OM": "Oman",
+    "EG": "Egypt",
+    "JO": "Jordan",
+    "LB": "Lebanon",
+    "IN": "India",
+    "PK": "Pakistan",
+    "BD": "Bangladesh",
+    "CN": "China",
+    "JP": "Japan",
+    "KR": "South Korea",
+    "AU": "Australia",
+    "NZ": "New Zealand",
+    "CA": "Canada",
+    "MX": "Mexico",
+    "BR": "Brazil",
+    "AR": "Argentina",
+    "ZA": "South Africa",
+    "NG": "Nigeria",
+    "KE": "Kenya",
+    "OTHER": "Other"
+  },
+  "validation": {
+    "required": "This field is required",
+    "invalidEmail": "Please enter a valid email address",
+    "invalidPhone": "Please enter a valid phone number",
+    "invalidDate": "Please enter a valid date",
+    "fileTooLarge": "File is too large (max 5MB)",
+    "invalidFileType": "Invalid file type"
+  },
+  "footer": {
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "contact": "Contact Us",
+    "copyright": "© {year} UK ETA Service. All rights reserved.",
+    "disclaimer": "This is a third-party ETA application service. We are not affiliated with the UK Government."
+  }
+}

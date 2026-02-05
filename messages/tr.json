@@ -1,0 +1,301 @@
+{
+  "common": {
+    "next": "Devam Et",
+    "back": "Geri",
+    "submit": "Başvuruyu Gönder",
+    "save": "İlerlemeyi Kaydet",
+    "cancel": "İptal",
+    "required": "Zorunlu",
+    "optional": "İsteğe Bağlı",
+    "loading": "Yükleniyor...",
+    "error": "Bir hata oluştu",
+    "success": "Başarılı",
+    "yes": "Evet",
+    "no": "Hayır",
+    "select": "Bir seçenek seçin",
+    "upload": "Yükle",
+    "remove": "Kaldır",
+    "preview": "Önizleme",
+    "close": "Kapat"
+  },
+  "header": {
+    "title": "İngiltere ETA Başvurusu",
+    "subtitle": "Elektronik Seyahat İzni Hizmeti",
+    "securityBadge": "256-bit Şifreli",
+    "support": "Yardıma mı ihtiyacınız var?"
+  },
+  "progress": {
+    "step": "Adım {current} / {total}",
+    "passport": "Pasaport",
+    "personal": "Kişisel",
+    "contact": "İletişim",
+    "photo": "Fotoğraf",
+    "background": "Geçmiş",
+    "address": "Adres",
+    "emergency": "Acil Durum",
+    "review": "İnceleme ve Ödeme"
+  },
+  "passport": {
+    "title": "Pasaport Bilgileri",
+    "description": "Pasaport bilgilerinizi seyahat belgenizde göründüğü şekilde girin.",
+    "country": "Pasaport Veren Ülke",
+    "countryPlaceholder": "Pasaport ülkenizi seçin",
+    "number": "Pasaport Numarası",
+    "numberPlaceholder": "Pasaport numaranızı girin",
+    "numberHelp": "Pasaportunuzun bilgi sayfasında bulunur",
+    "issueDate": "Veriliş Tarihi",
+    "expiryDate": "Son Geçerlilik Tarihi",
+    "expiryHelp": "Pasaport en az 6 ay geçerli olmalıdır",
+    "authority": "Veren Makam",
+    "authorityPlaceholder": "örn., Nüfus Müdürlüğü",
+    "photo": "Pasaport Fotoğraf Sayfası",
+    "photoDescription": "Pasaportunuzun bilgi sayfasının net bir fotoğrafını veya taramasını yükleyin",
+    "photoRequirements": "Gereksinimler: Net görüntü, tüm yazılar okunabilir, yansıma yok",
+    "uploadButton": "Yüklemek için tıklayın veya sürükleyip bırakın",
+    "uploadFormats": "PNG, JPG veya PDF (maks. 5MB)",
+    "errors": {
+      "countryRequired": "Lütfen pasaport ülkenizi seçin",
+      "numberRequired": "Pasaport numarası gereklidir",
+      "numberInvalid": "Lütfen geçerli bir pasaport numarası girin",
+      "issueDateRequired": "Veriliş tarihi gereklidir",
+      "issueDateFuture": "Veriliş tarihi gelecekte olamaz",
+      "expiryRequired": "Son geçerlilik tarihi gereklidir",
+      "expiryPast": "Pasaportunuzun süresi dolmuş",
+      "expiryTooSoon": "Pasaport en az 6 ay geçerli olmalıdır",
+      "authorityRequired": "Veren makam gereklidir",
+      "photoRequired": "Pasaport fotoğraf sayfası gereklidir"
+    }
+  },
+  "personal": {
+    "title": "Kişisel Bilgiler",
+    "description": "Bilgilerinizi pasaportunuzda göründüğü şekilde girin.",
+    "firstName": "Ad(lar)",
+    "firstNamePlaceholder": "Pasaportta gösterildiği gibi",
+    "lastName": "Soyad",
+    "lastNamePlaceholder": "Pasaportta gösterildiği gibi",
+    "dateOfBirth": "Doğum Tarihi",
+    "gender": "Cinsiyet",
+    "genderMale": "Erkek",
+    "genderFemale": "Kadın",
+    "genderOther": "Diğer / Belirtilmemiş",
+    "nationality": "Uyruk",
+    "nationalityPlaceholder": "Uyruğunuzu seçin",
+    "birthCountry": "Doğum Ülkesi",
+    "birthCountryPlaceholder": "Doğum ülkenizi seçin",
+    "errors": {
+      "firstNameRequired": "Ad gereklidir",
+      "lastNameRequired": "Soyad gereklidir",
+      "dobRequired": "Doğum tarihi gereklidir",
+      "dobFuture": "Doğum tarihi gelecekte olamaz",
+      "genderRequired": "Lütfen cinsiyetinizi seçin",
+      "nationalityRequired": "Uyruk gereklidir",
+      "birthCountryRequired": "Doğum ülkesi gereklidir"
+    }
+  },
+  "contact": {
+    "title": "İletişim Bilgileri",
+    "description": "ETA kararınız verilen e-posta adresine gönderilecektir.",
+    "email": "E-posta Adresi",
+    "emailPlaceholder": "e-posta@ornek.com",
+    "emailHelp": "ETA kararınızı bu adreste alacaksınız",
+    "confirmEmail": "E-posta Adresini Onayla",
+    "confirmEmailPlaceholder": "E-postanızı tekrar girin",
+    "phone": "Cep Telefonu Numarası",
+    "phonePlaceholder": "Telefon numaranızı girin",
+    "phoneHelp": "Ülke kodunu ekleyin (örn., Türkiye için +90)",
+    "errors": {
+      "emailRequired": "E-posta adresi gereklidir",
+      "emailInvalid": "Lütfen geçerli bir e-posta adresi girin",
+      "emailMismatch": "E-posta adresleri eşleşmiyor",
+      "phoneRequired": "Telefon numarası gereklidir",
+      "phoneInvalid": "Lütfen geçerli bir telefon numarası girin"
+    }
+  },
+  "photo": {
+    "title": "Kimlik Fotoğrafı",
+    "description": "Kimlik doğrulaması için yüzünüzün net bir fotoğrafını yükleyin.",
+    "selfie": "Yüz Fotoğrafı / Selfie",
+    "selfieDescription": "Bu, pasaport fotoğrafınızla eşleştirilecektir",
+    "requirements": "Fotoğraf Gereksinimleri",
+    "requirement1": "Yüz net görünmeli, kameraya düz bakmalı",
+    "requirement2": "Düz arka plan, iyi aydınlatma",
+    "requirement3": "Güneş gözlüğü, şapka veya yüz örtüsü yok",
+    "requirement4": "Güncel fotoğraf (son 6 ay içinde çekilmiş)",
+    "takePhoto": "Fotoğraf Çek",
+    "uploadPhoto": "Fotoğraf Yükle",
+    "retake": "Tekrar Çek",
+    "errors": {
+      "photoRequired": "Yüz fotoğrafı gereklidir",
+      "photoTooLarge": "Fotoğraf 5MB'den küçük olmalıdır",
+      "photoFormat": "Lütfen JPG veya PNG resmi yükleyin"
+    }
+  },
+  "background": {
+    "title": "Geçmiş Soruları",
+    "description": "Lütfen aşağıdaki soruları dürüstçe cevaplayın. Yanlış bilgi başvurunuzun reddedilmesine neden olabilir.",
+    "disclaimer": "Bu sorular İngiltere göçmenlik yetkilileri tarafından zorunlu tutulmaktadır. Doğru cevap verin.",
+    "criminal": {
+      "question": "Herhangi bir ülkede bir suçtan mahkum oldunuz mu?",
+      "help": "Küçük veya 'tükenmiş' sayılan suçlar dahil tüm mahkumiyetleri belirtin"
+    },
+    "immigration": {
+      "question": "Herhangi bir ülkede göçmenlik yasalarını ihlal ettiniz mi?",
+      "help": "Vize süresini aşma veya izinsiz çalışma dahil"
+    },
+    "refusal": {
+      "question": "Herhangi bir ülkeye girişiniz reddedildi mi veya sınır dışı edildiniz mi?",
+      "help": "Sadece İngiltere değil, herhangi bir ülke"
+    },
+    "terrorism": {
+      "question": "Terörist veya aşırılıkçı faaliyetlere katıldınız veya destek verdiniz mi?",
+      "help": "Her türlü katılım veya destek dahil"
+    },
+    "warning": "Yanlış bilgi vermek suçtur ve kovuşturmaya yol açabilir.",
+    "errors": {
+      "criminalRequired": "Lütfen sabıka sorusunu cevaplayın",
+      "immigrationRequired": "Lütfen göçmenlik ihlali sorusunu cevaplayın",
+      "refusalRequired": "Lütfen red/sınır dışı sorusunu cevaplayın",
+      "terrorismRequired": "Lütfen terörizm sorusunu cevaplayın"
+    }
+  },
+  "address": {
+    "title": "Adres Bilgileri",
+    "description": "Mevcut ikamet adresiniz.",
+    "line1": "Adres Satırı 1",
+    "line1Placeholder": "Sokak adresi, bina adı",
+    "line2": "Adres Satırı 2",
+    "line2Placeholder": "Daire, kat (isteğe bağlı)",
+    "city": "Şehir / İlçe",
+    "cityPlaceholder": "Şehrinizi girin",
+    "state": "İl / Bölge",
+    "statePlaceholder": "İlinizi veya bölgenizi girin",
+    "postcode": "Posta Kodu",
+    "postcodePlaceholder": "Posta kodunuzu girin",
+    "country": "İkamet Ülkesi",
+    "countryPlaceholder": "Ülkenizi seçin",
+    "errors": {
+      "line1Required": "Adres satırı 1 gereklidir",
+      "cityRequired": "Şehir gereklidir",
+      "postcodeRequired": "Posta kodu gereklidir",
+      "countryRequired": "Ülke gereklidir"
+    }
+  },
+  "emergency": {
+    "title": "Acil Durum İletişim",
+    "description": "Acil durumda iletişime geçebileceğimiz biri (isteğe bağlı ama önerilir).",
+    "name": "Kişi Adı",
+    "namePlaceholder": "Acil durum kişisinin tam adı",
+    "relationship": "İlişki",
+    "relationshipPlaceholder": "örn., Eş, Anne/Baba, Arkadaş",
+    "phone": "İletişim Telefon Numarası",
+    "phonePlaceholder": "Ülke kodunu ekleyin",
+    "skip": "Bu adımı atla"
+  },
+  "review": {
+    "title": "İncele ve Gönder",
+    "description": "Ödemeye geçmeden önce lütfen bilgilerinizi dikkatlice inceleyin.",
+    "sections": {
+      "passport": "Pasaport Bilgileri",
+      "personal": "Kişisel Bilgiler",
+      "contact": "İletişim Bilgileri",
+      "photo": "Kimlik Fotoğrafı",
+      "background": "Geçmiş Kontrolleri",
+      "address": "Adres",
+      "emergency": "Acil Durum İletişim"
+    },
+    "edit": "Düzenle",
+    "notProvided": "Sağlanmadı",
+    "consent": {
+      "title": "Beyanlar ve Onay",
+      "accuracy": "Verilen tüm bilgilerin bilgim dahilinde doğru ve eksiksiz olduğunu onaylıyorum.",
+      "submit": "Bu bilgilerin benim adıma İngiltere yetkililerine sunulmasına izin veriyorum.",
+      "terms": "Hizmet Şartları ve Gizlilik Politikasını okudum ve kabul ediyorum.",
+      "dataProcessing": "Verilerimin İngiltere GDPR gereksinimlerine uygun olarak işleneceğini anlıyorum."
+    },
+    "errors": {
+      "accuracyRequired": "Bilgilerinizin doğruluğunu onaylamalısınız",
+      "submitRequired": "Gönderim için onay vermelisiniz",
+      "termsRequired": "Şartları ve gizlilik politikasını kabul etmelisiniz",
+      "dataRequired": "Veri işleme bildirimini kabul etmelisiniz"
+    }
+  },
+  "payment": {
+    "title": "Ödeme",
+    "description": "ETA başvurunuzu göndermek için ödemenizi tamamlayın.",
+    "serviceFee": "ETA Hizmet Ücreti",
+    "processingFee": "İşlem Ücreti",
+    "total": "Toplam",
+    "secure": "Stripe tarafından güvenli ödeme",
+    "methods": "Apple Pay, Google Pay ve kart ödemeleri kabul edilir",
+    "processing": "Ödeme işleniyor...",
+    "success": "Ödeme başarılı!",
+    "error": "Ödeme başarısız. Lütfen tekrar deneyin.",
+    "submit": "Öde ve Başvuruyu Gönder"
+  },
+  "confirmation": {
+    "title": "Başvuru Gönderildi!",
+    "description": "ETA başvurunuz başarıyla alındı.",
+    "reference": "Referans Numarası",
+    "referenceHelp": "Bu numarayı kayıtlarınız için saklayın",
+    "email": "Onay e-postası şu adrese gönderildi:",
+    "nextSteps": "Bundan sonra ne olacak?",
+    "step1": "Ekibimiz başvurunuzu inceleyip İngiltere yetkililerine sunacak",
+    "step2": "E-posta ile durum güncellemeleri alacaksınız",
+    "step3": "Çoğu karar 3 iş günü içinde verilir",
+    "status": "Başvuru Durumunu Kontrol Et",
+    "newApplication": "Yeni Başvuru Başlat"
+  },
+  "countries": {
+    "GB": "Birleşik Krallık",
+    "US": "Amerika Birleşik Devletleri",
+    "TR": "Türkiye",
+    "DE": "Almanya",
+    "FR": "Fransa",
+    "IT": "İtalya",
+    "ES": "İspanya",
+    "NL": "Hollanda",
+    "BE": "Belçika",
+    "AT": "Avusturya",
+    "CH": "İsviçre",
+    "AE": "Birleşik Arap Emirlikleri",
+    "SA": "Suudi Arabistan",
+    "QA": "Katar",
+    "KW": "Kuveyt",
+    "BH": "Bahreyn",
+    "OM": "Umman",
+    "EG": "Mısır",
+    "JO": "Ürdün",
+    "LB": "Lübnan",
+    "IN": "Hindistan",
+    "PK": "Pakistan",
+    "BD": "Bangladeş",
+    "CN": "Çin",
+    "JP": "Japonya",
+    "KR": "Güney Kore",
+    "AU": "Avustralya",
+    "NZ": "Yeni Zelanda",
+    "CA": "Kanada",
+    "MX": "Meksika",
+    "BR": "Brezilya",
+    "AR": "Arjantin",
+    "ZA": "Güney Afrika",
+    "NG": "Nijerya",
+    "KE": "Kenya",
+    "OTHER": "Diğer"
+  },
+  "validation": {
+    "required": "Bu alan zorunludur",
+    "invalidEmail": "Lütfen geçerli bir e-posta adresi girin",
+    "invalidPhone": "Lütfen geçerli bir telefon numarası girin",
+    "invalidDate": "Lütfen geçerli bir tarih girin",
+    "fileTooLarge": "Dosya çok büyük (maks. 5MB)",
+    "invalidFileType": "Geçersiz dosya türü"
+  },
+  "footer": {
+    "privacy": "Gizlilik Politikası",
+    "terms": "Hizmet Şartları",
+    "contact": "Bize Ulaşın",
+    "copyright": "© {year} İngiltere ETA Hizmeti. Tüm hakları saklıdır.",
+    "disclaimer": "Bu, üçüncü taraf bir ETA başvuru hizmetidir. İngiltere Hükümeti ile bağlantılı değiliz."
+  }
+}

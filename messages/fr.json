@@ -1,0 +1,301 @@
+{
+  "common": {
+    "next": "Continuer",
+    "back": "Retour",
+    "submit": "Soumettre la demande",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "required": "Obligatoire",
+    "optional": "Facultatif",
+    "loading": "Chargement...",
+    "error": "Une erreur s'est produite",
+    "success": "Succès",
+    "yes": "Oui",
+    "no": "Non",
+    "select": "Sélectionnez une option",
+    "upload": "Téléverser",
+    "remove": "Supprimer",
+    "preview": "Aperçu",
+    "close": "Fermer"
+  },
+  "header": {
+    "title": "Demande d'AVE Royaume-Uni",
+    "subtitle": "Service d'Autorisation de Voyage Électronique",
+    "securityBadge": "Cryptage 256 bits",
+    "support": "Besoin d'aide?"
+  },
+  "progress": {
+    "step": "Étape {current} sur {total}",
+    "passport": "Passeport",
+    "personal": "Personnel",
+    "contact": "Contact",
+    "photo": "Photo",
+    "background": "Antécédents",
+    "address": "Adresse",
+    "emergency": "Urgence",
+    "review": "Révision et paiement"
+  },
+  "passport": {
+    "title": "Détails du passeport",
+    "description": "Entrez les informations exactement comme sur votre passeport.",
+    "country": "Pays d'émission",
+    "countryPlaceholder": "Sélectionnez le pays",
+    "number": "Numéro de passeport",
+    "numberPlaceholder": "Entrez votre numéro",
+    "numberHelp": "Sur la page d'information",
+    "issueDate": "Date d'émission",
+    "expiryDate": "Date d'expiration",
+    "expiryHelp": "Valide au moins 6 mois",
+    "authority": "Autorité émettrice",
+    "authorityPlaceholder": "ex., Préfecture",
+    "photo": "Page photo du passeport",
+    "photoDescription": "Photo claire de la page d'information",
+    "photoRequirements": "Image claire, texte lisible",
+    "uploadButton": "Cliquez ou glissez-déposez",
+    "uploadFormats": "PNG, JPG ou PDF (max. 5 Mo)",
+    "errors": {
+      "countryRequired": "Sélectionnez le pays",
+      "numberRequired": "Numéro requis",
+      "numberInvalid": "Numéro invalide",
+      "issueDateRequired": "Date requise",
+      "issueDateFuture": "Date invalide",
+      "expiryRequired": "Date requise",
+      "expiryPast": "Passeport expiré",
+      "expiryTooSoon": "Validité insuffisante",
+      "authorityRequired": "Autorité requise",
+      "photoRequired": "Photo requise"
+    }
+  },
+  "personal": {
+    "title": "Informations personnelles",
+    "description": "Comme sur votre passeport.",
+    "firstName": "Prénom(s)",
+    "firstNamePlaceholder": "Sur le passeport",
+    "lastName": "Nom de famille",
+    "lastNamePlaceholder": "Sur le passeport",
+    "dateOfBirth": "Date de naissance",
+    "gender": "Genre",
+    "genderMale": "Masculin",
+    "genderFemale": "Féminin",
+    "genderOther": "Autre",
+    "nationality": "Nationalité",
+    "nationalityPlaceholder": "Sélectionnez",
+    "birthCountry": "Pays de naissance",
+    "birthCountryPlaceholder": "Sélectionnez",
+    "errors": {
+      "firstNameRequired": "Prénom requis",
+      "lastNameRequired": "Nom requis",
+      "dobRequired": "Date requise",
+      "dobFuture": "Date invalide",
+      "genderRequired": "Genre requis",
+      "nationalityRequired": "Nationalité requise",
+      "birthCountryRequired": "Pays requis"
+    }
+  },
+  "contact": {
+    "title": "Coordonnées",
+    "description": "La décision AVE sera envoyée par e-mail.",
+    "email": "Adresse e-mail",
+    "emailPlaceholder": "votre@email.com",
+    "emailHelp": "Décision envoyée ici",
+    "confirmEmail": "Confirmez l'e-mail",
+    "confirmEmailPlaceholder": "Saisissez à nouveau",
+    "phone": "Téléphone portable",
+    "phonePlaceholder": "Votre numéro",
+    "phoneHelp": "Avec indicatif (+33)",
+    "errors": {
+      "emailRequired": "E-mail requis",
+      "emailInvalid": "E-mail invalide",
+      "emailMismatch": "E-mails différents",
+      "phoneRequired": "Téléphone requis",
+      "phoneInvalid": "Numéro invalide"
+    }
+  },
+  "photo": {
+    "title": "Photo d'identité",
+    "description": "Photo claire de votre visage.",
+    "selfie": "Photo du visage",
+    "selfieDescription": "Comparée au passeport",
+    "requirements": "Exigences",
+    "requirement1": "Visage visible, face caméra",
+    "requirement2": "Fond uni, bon éclairage",
+    "requirement3": "Sans lunettes ni chapeau",
+    "requirement4": "Photo récente (6 mois)",
+    "takePhoto": "Prendre photo",
+    "uploadPhoto": "Téléverser",
+    "retake": "Reprendre",
+    "errors": {
+      "photoRequired": "Photo requise",
+      "photoTooLarge": "Max 5 Mo",
+      "photoFormat": "JPG ou PNG"
+    }
+  },
+  "background": {
+    "title": "Antécédents",
+    "description": "Répondez honnêtement.",
+    "disclaimer": "Questions des autorités britanniques.",
+    "criminal": {
+      "question": "Condamnation pénale dans un pays?",
+      "help": "Toutes condamnations"
+    },
+    "immigration": {
+      "question": "Infraction à l'immigration?",
+      "help": "Dépassement de visa, etc."
+    },
+    "refusal": {
+      "question": "Refus d'entrée ou expulsion?",
+      "help": "Tout pays"
+    },
+    "terrorism": {
+      "question": "Activités terroristes ou extrémistes?",
+      "help": "Participation ou soutien"
+    },
+    "warning": "Fausses informations = poursuites.",
+    "errors": {
+      "criminalRequired": "Réponse requise",
+      "immigrationRequired": "Réponse requise",
+      "refusalRequired": "Réponse requise",
+      "terrorismRequired": "Réponse requise"
+    }
+  },
+  "address": {
+    "title": "Adresse",
+    "description": "Résidence actuelle.",
+    "line1": "Adresse ligne 1",
+    "line1Placeholder": "Rue, bâtiment",
+    "line2": "Adresse ligne 2",
+    "line2Placeholder": "Appartement (facultatif)",
+    "city": "Ville",
+    "cityPlaceholder": "Votre ville",
+    "state": "Région",
+    "statePlaceholder": "Votre région",
+    "postcode": "Code postal",
+    "postcodePlaceholder": "Code postal",
+    "country": "Pays de résidence",
+    "countryPlaceholder": "Sélectionnez",
+    "errors": {
+      "line1Required": "Adresse requise",
+      "cityRequired": "Ville requise",
+      "postcodeRequired": "Code postal requis",
+      "countryRequired": "Pays requis"
+    }
+  },
+  "emergency": {
+    "title": "Contact d'urgence",
+    "description": "Facultatif mais recommandé.",
+    "name": "Nom du contact",
+    "namePlaceholder": "Nom complet",
+    "relationship": "Relation",
+    "relationshipPlaceholder": "ex., Conjoint",
+    "phone": "Téléphone",
+    "phonePlaceholder": "Avec indicatif",
+    "skip": "Passer"
+  },
+  "review": {
+    "title": "Révision et paiement",
+    "description": "Vérifiez vos informations.",
+    "sections": {
+      "passport": "Passeport",
+      "personal": "Personnel",
+      "contact": "Contact",
+      "photo": "Photo",
+      "background": "Antécédents",
+      "address": "Adresse",
+      "emergency": "Urgence"
+    },
+    "edit": "Modifier",
+    "notProvided": "Non fourni",
+    "consent": {
+      "title": "Déclarations",
+      "accuracy": "Je confirme l'exactitude des informations.",
+      "submit": "Je consens à la soumission.",
+      "terms": "J'accepte les conditions.",
+      "dataProcessing": "J'accepte le traitement des données."
+    },
+    "errors": {
+      "accuracyRequired": "Confirmation requise",
+      "submitRequired": "Consentement requis",
+      "termsRequired": "Acceptation requise",
+      "dataRequired": "Acceptation requise"
+    }
+  },
+  "payment": {
+    "title": "Paiement",
+    "description": "Complétez le paiement.",
+    "serviceFee": "Frais de service",
+    "processingFee": "Frais de traitement",
+    "total": "Total",
+    "secure": "Paiement sécurisé Stripe",
+    "methods": "Apple Pay, Google Pay, cartes",
+    "processing": "Traitement...",
+    "success": "Paiement réussi!",
+    "error": "Échec. Réessayez.",
+    "submit": "Payer et soumettre"
+  },
+  "confirmation": {
+    "title": "Demande soumise!",
+    "description": "Demande reçue avec succès.",
+    "reference": "Numéro de référence",
+    "referenceHelp": "Conservez ce numéro",
+    "email": "Confirmation envoyée à:",
+    "nextSteps": "Prochaines étapes",
+    "step1": "Examen et soumission",
+    "step2": "Mises à jour par e-mail",
+    "step3": "Décision sous 3 jours",
+    "status": "Vérifier le statut",
+    "newApplication": "Nouvelle demande"
+  },
+  "countries": {
+    "GB": "Royaume-Uni",
+    "US": "États-Unis",
+    "TR": "Turquie",
+    "DE": "Allemagne",
+    "FR": "France",
+    "IT": "Italie",
+    "ES": "Espagne",
+    "NL": "Pays-Bas",
+    "BE": "Belgique",
+    "AT": "Autriche",
+    "CH": "Suisse",
+    "AE": "Émirats Arabes Unis",
+    "SA": "Arabie Saoudite",
+    "QA": "Qatar",
+    "KW": "Koweït",
+    "BH": "Bahreïn",
+    "OM": "Oman",
+    "EG": "Égypte",
+    "JO": "Jordanie",
+    "LB": "Liban",
+    "IN": "Inde",
+    "PK": "Pakistan",
+    "BD": "Bangladesh",
+    "CN": "Chine",
+    "JP": "Japon",
+    "KR": "Corée du Sud",
+    "AU": "Australie",
+    "NZ": "Nouvelle-Zélande",
+    "CA": "Canada",
+    "MX": "Mexique",
+    "BR": "Brésil",
+    "AR": "Argentine",
+    "ZA": "Afrique du Sud",
+    "NG": "Nigeria",
+    "KE": "Kenya",
+    "OTHER": "Autre"
+  },
+  "validation": {
+    "required": "Champ requis",
+    "invalidEmail": "E-mail invalide",
+    "invalidPhone": "Téléphone invalide",
+    "invalidDate": "Date invalide",
+    "fileTooLarge": "Fichier trop volumineux",
+    "invalidFileType": "Type invalide"
+  },
+  "footer": {
+    "privacy": "Confidentialité",
+    "terms": "Conditions",
+    "contact": "Contact",
+    "copyright": "© {year} Service AVE UK. Tous droits réservés.",
+    "disclaimer": "Service tiers non affilié au gouvernement britannique."
+  }
+}

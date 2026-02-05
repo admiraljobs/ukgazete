@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+}
+
+@layer base {
+  * {
+    @apply border-brand-royal;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-surface-dark text-brand-light font-body antialiased;
+    background-image: 
+      radial-gradient(ellipse at top, rgba(102, 252, 241, 0.03) 0%, transparent 50%),
+      radial-gradient(ellipse at bottom right, rgba(69, 162, 158, 0.05) 0%, transparent 50%);
+    min-height: 100vh;
+  }
+
+  /* RTL Support for Arabic */
+  [dir="rtl"] {
+    text-align: right;
+  }
+
+  [dir="rtl"] .rtl-flip {
+    transform: scaleX(-1);
+  }
+}
+
+@layer components {
+  .form-card {
+    @apply bg-surface-card/80 backdrop-blur-xl rounded-2xl border border-brand-royal/50 shadow-2xl;
+    box-shadow: 
+      0 25px 50px -12px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(102, 252, 241, 0.05),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3.5 bg-surface-dark/50 border border-brand-royal/50 rounded-xl 
+           text-brand-light placeholder:text-brand-light/40
+           focus:outline-none focus:ring-2 focus:ring-brand-accent/50 focus:border-brand-accent/50
+           transition-all duration-200;
+  }
+
+  .input-field:hover:not(:focus) {
+    @apply border-brand-muted/50;
+  }
+
+  .input-label {
+    @apply block text-sm font-medium text-brand-light/80 mb-2;
+  }
+
+  .input-error {
+    @apply text-red-400 text-sm mt-1.5 flex items-center gap-1.5;
+  }
+
+  .btn-primary {
+    @apply px-6 py-3.5 bg-brand-accent text-surface-dark font-semibold rounded-xl
+           hover:bg-brand-accent/90 active:scale-[0.98]
+           focus:outline-none focus:ring-2 focus:ring-brand-accent/50 focus:ring-offset-2 focus:ring-offset-surface-dark
+           transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3.5 bg-transparent border border-brand-royal text-brand-light font-medium rounded-xl
+           hover:bg-brand-royal/30 hover:border-brand-muted/50 active:scale-[0.98]
+           focus:outline-none focus:ring-2 focus:ring-brand-muted/50 focus:ring-offset-2 focus:ring-offset-surface-dark
+           transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .progress-step {
+    @apply flex items-center justify-center w-10 h-10 rounded-full text-sm font-semibold
+           transition-all duration-300;
+  }
+
+  .progress-step-active {
+    @apply bg-brand-accent text-surface-dark shadow-lg shadow-brand-accent/30;
+  }
+
+  .progress-step-complete {
+    @apply bg-brand-muted text-surface-dark;
+  }
+
+  .progress-step-pending {
+    @apply bg-surface-elevated text-brand-light/50;
+  }
+
+  .step-title {
+    @apply text-2xl md:text-3xl font-display font-bold text-white mb-2;
+  }
+
+  .step-description {
+    @apply text-brand-light/60 text-base md:text-lg;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-surface-dark;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-brand-royal rounded-full hover:bg-brand-muted/50;
+  }
+
+  /* File upload zone */
+  .upload-zone {
+    @apply border-2 border-dashed border-brand-royal/50 rounded-xl p-8 text-center
+           hover:border-brand-accent/50 hover:bg-brand-accent/5
+           transition-all duration-200 cursor-pointer;
+  }
+
+  .upload-zone-active {
+    @apply border-brand-accent bg-brand-accent/10;
+  }
+
+  /* Select dropdown styling */
+  .select-field {
+    @apply input-field appearance-none cursor-pointer
+           bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%2366fcf1%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')]
+           bg-[length:20px] bg-[right_12px_center] bg-no-repeat
+           pr-10;
+  }
+
+  [dir="rtl"] .select-field {
+    @apply bg-[left_12px_center] pl-10 pr-4;
+  }
+
+  /* Checkbox styling */
+  .checkbox-field {
+    @apply w-5 h-5 rounded border-2 border-brand-royal/50 bg-surface-dark/50
+           checked:bg-brand-accent checked:border-brand-accent
+           focus:ring-2 focus:ring-brand-accent/50 focus:ring-offset-2 focus:ring-offset-surface-dark
+           transition-all duration-200 cursor-pointer appearance-none
+           relative;
+  }
+
+  .checkbox-field:checked::after {
+    content: '';
+    @apply absolute inset-0 flex items-center justify-center;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2214%22%20height%3D%2214%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%230b0c10%22%20stroke-width%3D%223%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%2220%206%209%2017%204%2012%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 14px;
+  }
+
+  /* Radio styling */
+  .radio-field {
+    @apply w-5 h-5 rounded-full border-2 border-brand-royal/50 bg-surface-dark/50
+           checked:border-brand-accent checked:bg-transparent
+           focus:ring-2 focus:ring-brand-accent/50 focus:ring-offset-2 focus:ring-offset-surface-dark
+           transition-all duration-200 cursor-pointer appearance-none
+           relative;
+  }
+
+  .radio-field:checked::after {
+    content: '';
+    @apply absolute top-1/2 left-1/2 w-2.5 h-2.5 rounded-full bg-brand-accent -translate-x-1/2 -translate-y-1/2;
+  }
+}
+
+/* Animation classes */
+.animate-in {
+  animation: slideUp 0.5s ease-out forwards;
+}
+
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+
+/* Phone input override */
+.PhoneInputInput {
+  @apply input-field !bg-transparent !border-0 !ring-0 !outline-none;
+}
+
+/* Date picker native styling */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.8) sepia(1) saturate(5) hue-rotate(140deg);
+  cursor: pointer;
+}
