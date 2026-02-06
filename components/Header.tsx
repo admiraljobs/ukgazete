@@ -2,7 +2,9 @@
 
 import { useTranslations, useLocale } from 'next-intl';
 import { useRouter, usePathname } from 'next/navigation';
-import { Shield, Globe, HelpCircle } from 'lucide-react';
+import Link from 'next/link';
+import { Shield, Globe, HelpCircle, Menu, X } from 'lucide-react';
+import { useState } from 'react';
 import { locales, localeNames, Locale } from '@/i18n/request';
 import { cn } from '@/lib/utils';
 
@@ -11,19 +13,32 @@ export function Header() {
   const locale = useLocale() as Locale;
   const router = useRouter();
   const pathname = usePathname();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleLanguageChange = (newLocale: string) => {
     const segments = pathname.split('/');
-    segments[1] = newLocale;
-    router.push(segments.join('/'));
+    if (locales.includes(segments[1] as Locale)) {
+      segments[1] = newLocale;
+    } else {
+      segments.splice(1, 0, newLocale);
+    }
+    router.push(segments.join('/') || '/');
   };
+
+  const navLinks = [
+    { href: '/', label: 'Home' },
+    { href: '/apply-for-eta', label: 'Apply Now' },
+    { href: '/status', label: 'Check Status' },
+    { href: '/about', label: 'About' },
+    { href: '/contact', label: 'Contact' },
+  ];
 
   return (
     <header className="bg-surface-card/50 backdrop-blur-lg border-b border-brand-royal/30 sticky top-0 z-50">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo / Title */}
-          <div className="flex items-center gap-3">
+          <Link href="/" className="flex items-center gap-3">
             <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-gradient-to-br from-brand-accent to-brand-muted flex items-center justify-center">
               <span className="text-surface-dark font-display font-bold text-lg md:text-xl">UK</span>
             </div>
@@ -31,11 +46,29 @@ export function Header() {
               <h1 className="font-display font-bold text-white text-lg md:text-xl">{t('title')}</h1>
               <p className="text-brand-light/60 text-xs md:text-sm">{t('subtitle')}</p>
             </div>
-          </div>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center gap-6">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={cn(
+                  'text-sm font-medium transition-colors hover:text-brand-accent',
+                  pathname === link.href || pathname === `/${locale}${link.href}`
+                    ? 'text-brand-accent'
+                    : 'text-brand-light/70'
+                )}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
 
           {/* Right side actions */}
           <div className="flex items-center gap-2 md:gap-4">
-            {/* Security badge */}
+            {/* Security badge - hidden on mobile */}
             <div className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-muted/10 border border-brand-muted/20">
               <Shield className="w-4 h-4 text-brand-accent" />
               <span className="text-xs text-brand-muted">{t('securityBadge')}</span>
@@ -64,13 +97,38 @@ export function Header() {
               </div>
             </div>
 
-            {/* Help button */}
-            <button className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-surface-elevated/50 border border-brand-royal/30 hover:border-brand-muted/50 transition-colors text-brand-light text-sm">
-              <HelpCircle className="w-4 h-4 text-brand-accent" />
-              <span className="hidden sm:inline">{t('support')}</span>
+            {/* Mobile menu button */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="lg:hidden p-2 rounded-lg hover:bg-surface-elevated/50 text-brand-light"
+            >
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
+
+        {/* Mobile Navigation */}
+        {mobileMenuOpen && (
+          <nav className="lg:hidden py-4 border-t border-brand-royal/30">
+            <div className="flex flex-col gap-2">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={cn(
+                    'px-4 py-3 rounded-lg text-sm font-medium transition-colors',
+                    pathname === link.href || pathname === `/${locale}${link.href}`
+                      ? 'bg-brand-accent/10 text-brand-accent'
+                      : 'text-brand-light/70 hover:bg-surface-elevated/50 hover:text-brand-light'
+                  )}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+          </nav>
+        )}
       </div>
     </header>
   );

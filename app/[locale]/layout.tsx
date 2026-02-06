@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
-import { isRtl, Locale } from '@/i18n/request';
+import { locales, localeNames, Locale, isRtl } from '@/i18n/request';
 import { FormProvider } from '@/lib/form-context';
 import '../globals.css';
 
