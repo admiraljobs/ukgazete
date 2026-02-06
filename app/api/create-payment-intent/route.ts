@@ -2,19 +2,21 @@ import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2024-12-18.acacia',
+  apiVersion: '2025-02-24.acacia',
 });
 
 export async function POST(request: Request) {
   try {
-    const { amount, currency = 'gbp', metadata } = await request.json();
+    const { email, metadata } = await request.json();
 
+    // Create payment intent
     const paymentIntent = await stripe.paymentIntents.create({
-      amount: Math.round(amount * 100), // Convert to pence
-      currency,
+      amount: 5249, // £52.49 in pence (£49.99 + £2.50 fee)
+      currency: 'gbp',
       automatic_payment_methods: {
         enabled: true,
       },
+      receipt_email: email,
       metadata: {
         ...metadata,
         service: 'uk-eta-application',
@@ -23,14 +25,10 @@ export async function POST(request: Request) {
 
     return NextResponse.json({
       clientSecret: paymentIntent.client_secret,
-      paymentIntentId: paymentIntent.id,
     });
   } catch (error: unknown) {
-    const errorMessage = error instanceof Error ? error.message : 'Failed to create payment intent';
-    console.error('Error creating payment intent:', error);
-    return NextResponse.json(
-      { error: errorMessage },
-      { status: 500 }
-    );
+    const errorMessage = error instanceof Error ? error.message : 'Payment failed';
+    console.error('Stripe error:', error);
+    return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 }

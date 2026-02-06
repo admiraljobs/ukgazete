@@ -109,17 +109,17 @@ export const emergencySchema = z.object({
 
 // Step 8: Consent & Review
 export const consentSchema = z.object({
-  confirmAccuracy: z.literal(true, {
-    errorMap: () => ({ message: 'review.errors.accuracyRequired' }),
+  confirmAccuracy: z.boolean().refine(v => v === true, {
+    message: 'review.errors.accuracyRequired',
   }),
-  consentSubmit: z.literal(true, {
-    errorMap: () => ({ message: 'review.errors.submitRequired' }),
+  consentSubmit: z.boolean().refine(v => v === true, {
+    message: 'review.errors.submitRequired',
   }),
-  acceptTerms: z.literal(true, {
-    errorMap: () => ({ message: 'review.errors.termsRequired' }),
+  acceptTerms: z.boolean().refine(v => v === true, {
+    message: 'review.errors.termsRequired',
   }),
-  acceptDataProcessing: z.literal(true, {
-    errorMap: () => ({ message: 'review.errors.dataRequired' }),
+  acceptDataProcessing: z.boolean().refine(v => v === true, {
+    message: 'review.errors.dataRequired',
   }),
 });
 
