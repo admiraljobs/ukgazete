@@ -3,8 +3,8 @@
 import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Camera, Upload, X, Check, User } from 'lucide-react';
-import { useCallback, useState, useRef } from 'react';
+import { Camera, Upload, X, Check, RotateCcw } from 'lucide-react';
+import { useCallback, useState, useRef, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { useFormContext } from '@/lib/form-context';
 import { photoSchema, PhotoData } from '@/lib/validations';
@@ -18,6 +18,8 @@ export function PhotoStep() {
     formData.selfiePhoto || null
   );
   const [showCamera, setShowCamera] = useState(false);
+  const [cameraReady, setCameraReady] = useState(false);
+  const [cameraError, setCameraError] = useState<string | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const streamRef = useRef<MediaStream | null>(null);
 
@@ -32,6 +34,39 @@ export function PhotoStep() {
     },
   });
 
+  // Clean up camera stream on unmount
+  useEffect(() => {
+    return () => {
+      if (streamRef.current) {
+        streamRef.current.getTracks().forEach((track) => track.stop());
+        streamRef.current = null;
+      }
+    };
+  }, []);
+
+  // Attach stream to video element once both are available
+  useEffect(() => {
+    if (showCamera && videoRef.current && streamRef.current) {
+      const video = videoRef.current;
+      video.srcObject = streamRef.current;
+      
+      const handleCanPlay = () => {
+        setCameraReady(true);
+      };
+
+      video.addEventListener('canplay', handleCanPlay);
+      
+      // Ensure video plays
+      video.play().catch((err) => {
+        console.error('Video play failed:', err);
+      });
+
+      return () => {
+        video.removeEventListener('canplay', handleCanPlay);
+      };
+    }
+  }, [showCamera]);
+
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
       const file = acceptedFiles[0];
@@ -40,7 +75,7 @@ export function PhotoStep() {
         reader.onload = () => {
           const base64 = reader.result as string;
           setUploadedPhoto(base64);
-          setValue('selfiePhoto', base64);
+          setValue('selfiePhoto', base64, { shouldValidate: true });
         };
         reader.readAsDataURL(file);
       }
@@ -59,18 +94,69 @@ export function PhotoStep() {
   });
 
   const startCamera = async () => {
+    setCameraError(null);
+    setCameraReady(false);
+
+    // Check if getUserMedia is available
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      setCameraError(
+        'Camera is not supported in this browser. Please upload a photo instead.'
+      );
+      return;
+    }
+
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({
-        video: { facingMode: 'user', width: 640, height: 480 },
-      });
-      streamRef.current = stream;
-      if (videoRef.current) {
-        videoRef.current.srcObject = stream;
+      // Stop any existing stream first
+      if (streamRef.current) {
+        streamRef.current.getTracks().forEach((track) => track.stop());
       }
+
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: {
+          facingMode: 'user',
+          width: { ideal: 640 },
+          height: { ideal: 480 },
+        },
+        audio: false,
+      });
+
+      streamRef.current = stream;
+      // Set showCamera to true AFTER we have the stream
+      // The useEffect will handle attaching it to the video element
       setShowCamera(true);
-    } catch (err) {
-      console.error('Camera access denied:', err);
-      alert('Camera access was denied. Please allow camera access or upload a photo instead.');
+    } catch (err: unknown) {
+      console.error('Camera access error:', err);
+      const error = err as DOMException;
+      
+      if (error.name === 'NotAllowedError' || error.name === 'PermissionDeniedError') {
+        setCameraError(
+          'Camera access was denied. Please allow camera access in your browser settings, or upload a photo instead.'
+        );
+      } else if (error.name === 'NotFoundError' || error.name === 'DevicesNotFoundError') {
+        setCameraError(
+          'No camera found on this device. Please upload a photo instead.'
+        );
+      } else if (error.name === 'NotReadableError' || error.name === 'TrackStartError') {
+        setCameraError(
+          'Camera is in use by another application. Please close other apps using the camera and try again.'
+        );
+      } else if (error.name === 'OverconstrainedError') {
+        // Retry with relaxed constraints
+        try {
+          const fallbackStream = await navigator.mediaDevices.getUserMedia({
+            video: true,
+            audio: false,
+          });
+          streamRef.current = fallbackStream;
+          setShowCamera(true);
+        } catch {
+          setCameraError('Unable to access camera. Please upload a photo instead.');
+        }
+      } else {
+        setCameraError(
+          'Unable to access camera. Please upload a photo instead.'
+        );
+      }
     }
   };
 
@@ -79,28 +165,37 @@ export function PhotoStep() {
       streamRef.current.getTracks().forEach((track) => track.stop());
       streamRef.current = null;
     }
+    setCameraReady(false);
     setShowCamera(false);
   };
 
   const capturePhoto = () => {
-    if (videoRef.current) {
-      const canvas = document.createElement('canvas');
-      canvas.width = videoRef.current.videoWidth;
-      canvas.height = videoRef.current.videoHeight;
-      const ctx = canvas.getContext('2d');
-      if (ctx) {
-        ctx.drawImage(videoRef.current, 0, 0);
-        const base64 = canvas.toDataURL('image/jpeg', 0.8);
-        setUploadedPhoto(base64);
-        setValue('selfiePhoto', base64);
-        stopCamera();
-      }
+    if (!videoRef.current) return;
+
+    const video = videoRef.current;
+    const canvas = document.createElement('canvas');
+    
+    // Use actual video dimensions for best quality
+    canvas.width = video.videoWidth || 640;
+    canvas.height = video.videoHeight || 480;
+    
+    const ctx = canvas.getContext('2d');
+    if (ctx) {
+      // Mirror the image horizontally (selfie mode)
+      ctx.translate(canvas.width, 0);
+      ctx.scale(-1, 1);
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+      
+      const base64 = canvas.toDataURL('image/jpeg', 0.85);
+      setUploadedPhoto(base64);
+      setValue('selfiePhoto', base64, { shouldValidate: true });
+      stopCamera();
     }
   };
 
   const removePhoto = () => {
     setUploadedPhoto(null);
-    setValue('selfiePhoto', '');
+    setValue('selfiePhoto', '', { shouldValidate: true });
   };
 
   const onSubmit = (data: PhotoData) => {
@@ -138,6 +233,13 @@ export function PhotoStep() {
           </ul>
         </div>
 
+        {/* Camera Error */}
+        {cameraError && (
+          <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-sm">
+            {cameraError}
+          </div>
+        )}
+
         {/* Photo Display/Capture Area */}
         <div>
           <label className="input-label">
@@ -154,19 +256,34 @@ export function PhotoStep() {
                 playsInline
                 muted
                 className="w-full aspect-[4/3] object-cover"
+                style={{ transform: 'scaleX(-1)' }}
               />
+              
+              {/* Loading overlay */}
+              {!cameraReady && (
+                <div className="absolute inset-0 flex items-center justify-center bg-black/60">
+                  <div className="text-center">
+                    <div className="w-8 h-8 border-2 border-brand-accent border-t-transparent rounded-full animate-spin mx-auto mb-2" />
+                    <span className="text-brand-light/70 text-sm">Starting camera...</span>
+                  </div>
+                </div>
+              )}
+
               <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-4">
                 <button
                   type="button"
                   onClick={stopCamera}
                   className="p-3 rounded-full bg-red-500/80 hover:bg-red-500 text-white transition-colors"
+                  aria-label="Close camera"
                 >
                   <X className="w-6 h-6" />
                 </button>
                 <button
                   type="button"
                   onClick={capturePhoto}
-                  className="p-4 rounded-full bg-brand-accent hover:bg-brand-accent/90 text-surface-dark transition-colors"
+                  disabled={!cameraReady}
+                  className="p-4 rounded-full bg-brand-accent hover:bg-brand-accent/90 text-surface-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  aria-label="Take photo"
                 >
                   <Camera className="w-8 h-8" />
                 </button>
@@ -185,8 +302,17 @@ export function PhotoStep() {
                   type="button"
                   onClick={removePhoto}
                   className="p-2 rounded-lg bg-red-500/80 hover:bg-red-500 text-white transition-colors"
+                  aria-label="Remove photo"
                 >
                   <X className="w-5 h-5" />
+                </button>
+                <button
+                  type="button"
+                  onClick={startCamera}
+                  className="p-2 rounded-lg bg-brand-accent/80 hover:bg-brand-accent text-surface-dark transition-colors"
+                  aria-label="Retake photo"
+                >
+                  <RotateCcw className="w-5 h-5" />
                 </button>
               </div>
               <div className="absolute top-4 left-4">
@@ -228,6 +354,10 @@ export function PhotoStep() {
                 <span className="text-brand-light font-medium">{t('photo.uploadPhoto')}</span>
               </div>
             </div>
+          )}
+
+          {errors.selfiePhoto && (
+            <p className="input-error mt-2">{t('photo.errors.photoRequired')}</p>
           )}
         </div>
       </div>
