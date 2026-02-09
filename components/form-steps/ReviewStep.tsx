@@ -221,10 +221,6 @@ function PaymentForm({ onSuccess, onError, isProcessing, setIsProcessing }: Paym
         onReady={() => setPaymentReady(true)}
         options={{
           layout: 'tabs',
-          wallets: {
-            applePay: 'auto',
-            googlePay: 'auto',
-          },
         }}
       />
 
