@@ -63,8 +63,8 @@ export function ReviewStep() {
           body: JSON.stringify({
             email: e.payerEmail || email,
             metadata: {
-              applicantName: `${formData.personal?.firstName} ${formData.personal?.lastName}`,
-              passportNumber: formData.passport?.passportNumber,
+              applicantName: `${formData.firstName} ${formData.lastName}`,
+              passportNumber: formData.passportNumber,
             },
           }),
         });
@@ -147,8 +147,8 @@ export function ReviewStep() {
         body: JSON.stringify({
           email,
           metadata: {
-            applicantName: `${formData.personal?.firstName} ${formData.personal?.lastName}`,
-            passportNumber: formData.passport?.passportNumber,
+            applicantName: `${formData.firstName} ${formData.lastName}`,
+            passportNumber: formData.passportNumber,
           },
         }),
       });
@@ -191,22 +191,15 @@ export function ReviewStep() {
     }
   };
 
-  // Application summary sections
-  const renderSummarySection = (title: string, data: Record<string, any>) => (
-    <div className="mb-6">
-      <h3 className="text-lg font-semibold text-gold-400 mb-3">{title}</h3>
-      <div className="bg-navy-800/30 rounded-lg p-4 space-y-2">
-        {Object.entries(data).map(([key, value]) => (
-          <div key={key} className="flex justify-between text-sm">
-            <span className="text-slate-400 capitalize">
-              {key.replace(/([A-Z])/g, ' $1').trim()}:
-            </span>
-            <span className="text-slate-200">{value || '-'}</span>
-          </div>
-        ))}
+  // Application summary data row component
+  function DataRow({ label, value }: { label: string; value?: string | null }) {
+    return (
+      <div className="flex justify-between text-sm">
+        <span className="text-slate-400">{label}:</span>
+        <span className="text-slate-200">{value || '-'}</span>
       </div>
-    </div>
-  );
+    );
+  }
 
   return (
     <motion.div
@@ -221,10 +214,47 @@ export function ReviewStep() {
           {t('review.title') || 'Review Your Application'}
         </h2>
 
-        {formData.personal && renderSummarySection('Personal Information', formData.personal)}
-        {formData.contact && renderSummarySection('Contact Information', formData.contact)}
-        {formData.passport && renderSummarySection('Passport Details', formData.passport)}
-        {formData.address && renderSummarySection('Address', formData.address)}
+        {/* Passport */}
+        <div className="mb-6">
+          <h3 className="text-lg font-semibold text-gold-400 mb-3">Passport Details</h3>
+          <div className="bg-navy-800/30 rounded-lg p-4 space-y-2">
+            <DataRow label="Country" value={formData.passportCountry} />
+            <DataRow label="Passport Number" value={formData.passportNumber} />
+            <DataRow label="Issue Date" value={formData.issueDate} />
+            <DataRow label="Expiry Date" value={formData.expiryDate} />
+          </div>
+        </div>
+
+        {/* Personal */}
+        <div className="mb-6">
+          <h3 className="text-lg font-semibold text-gold-400 mb-3">Personal Information</h3>
+          <div className="bg-navy-800/30 rounded-lg p-4 space-y-2">
+            <DataRow label="Name" value={`${formData.firstName} ${formData.lastName}`} />
+            <DataRow label="Date of Birth" value={formData.dateOfBirth} />
+            <DataRow label="Gender" value={formData.gender} />
+            <DataRow label="Nationality" value={formData.nationality} />
+          </div>
+        </div>
+
+        {/* Contact */}
+        <div className="mb-6">
+          <h3 className="text-lg font-semibold text-gold-400 mb-3">Contact Information</h3>
+          <div className="bg-navy-800/30 rounded-lg p-4 space-y-2">
+            <DataRow label="Email" value={formData.email} />
+            <DataRow label="Phone" value={formData.phone} />
+          </div>
+        </div>
+
+        {/* Address */}
+        <div className="mb-6">
+          <h3 className="text-lg font-semibold text-gold-400 mb-3">Address</h3>
+          <div className="bg-navy-800/30 rounded-lg p-4 space-y-2">
+            <DataRow label="Address" value={`${formData.addressLine1}${formData.addressLine2 ? `, ${formData.addressLine2}` : ''}`} />
+            <DataRow label="City" value={formData.city} />
+            <DataRow label="Postcode" value={formData.postcode} />
+            <DataRow label="Country" value={formData.country} />
+          </div>
+        </div>
       </div>
 
       {/* Payment Section */}
