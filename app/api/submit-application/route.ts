@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { adminDb, adminStorage } from '@/lib/firebase-admin';
+import { resend, FROM_EMAIL } from '@/lib/resend';
+import { ConfirmationEmail } from '@/emails/confirmation';
 
 if (!process.env.STRIPE_SECRET_KEY) {
   throw new Error('Missing STRIPE_SECRET_KEY');
@@ -149,6 +151,32 @@ export async function POST(request: Request) {
       .collection('eta-applications')
       .doc(referenceNumber)
       .set(applicationData);
+
+    // Send confirmation email
+    const statusUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'https://uketa-service.com'}/status`;
+    const applicantName = `${formData.firstName} ${formData.lastName}`;
+
+    try {
+      await resend.emails.send({
+        from: FROM_EMAIL,
+        to: formData.email,
+        subject: `Application Received - ${referenceNumber}`,
+        react: ConfirmationEmail({
+          referenceNumber,
+          applicantName,
+          email: formData.email,
+          submittedAt: new Date().toLocaleDateString('en-GB', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric',
+          }),
+          statusUrl,
+        }),
+      });
+    } catch (emailError) {
+      console.error('Failed to send confirmation email:', emailError);
+      // Don't fail the request - application is already saved
+    }
 
     return NextResponse.json({
       success: true,

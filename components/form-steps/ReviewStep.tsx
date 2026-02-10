@@ -33,10 +33,19 @@ import { consentSchema, ConsentData, FORM_STEPS } from '@/lib/validations';
 import { FormNavigation } from '../FormNavigation';
 import { StripeProvider } from '../StripeProvider';
 import { COUNTRIES, cn } from '@/lib/utils';
-import { ApplePayDiagnostics } from './ApplePayDiagnostics';
+
+// TypeScript declaration for ApplePaySession
+declare global {
+  interface Window {
+    ApplePaySession?: {
+      canMakePayments(): boolean;
+      supportsVersion(version: number): boolean;
+    };
+  }
+}
 
 // ─── Pricing ────────────────────────────────────────────────
-const SERVICE_FEE = 49.99;
+const SERVICE_FEE = 79.00;
 const PROCESSING_FEE = 2.50;
 const TOTAL = SERVICE_FEE + PROCESSING_FEE;
 
@@ -198,32 +207,20 @@ function PaymentForm({ onSuccess, onError, isProcessing, setIsProcessing }: Paym
   useEffect(() => {
     if (!stripe) return;
 
-    console.log('[Apple Pay] Initializing Payment Request...');
-
     const pr = stripe.paymentRequest({
       country: 'GB',
       currency: 'gbp',
       total: {
         label: 'UK ETA Application',
-        amount: 5249, // £52.49 in pence
+        amount: 8150, // £81.50 in pence (£79 + £2.50)
       },
       requestPayerEmail: true,
     });
 
     pr.canMakePayment().then((result) => {
-      console.log('[Apple Pay] canMakePayment result:', result);
       if (result) {
-        console.log('[Apple Pay] ✅ Available!');
         setPaymentRequest(pr);
-      } else {
-        console.log('[Apple Pay] ❌ Not available');
-        console.log('[Apple Pay] ApplePaySession exists?', typeof window.ApplePaySession !== 'undefined');
-        if (typeof window.ApplePaySession !== 'undefined') {
-          console.log('[Apple Pay] canMakePayments:', window.ApplePaySession.canMakePayments());
-        }
       }
-    }).catch((error) => {
-      console.error('[Apple Pay] Error:', error);
     });
   }, [stripe]);
 
@@ -456,9 +453,6 @@ export function ReviewStep() {
   if (showPayment && clientSecret) {
     return (
       <div>
-        {/* Diagnostics Panel */}
-        <ApplePayDiagnostics />
-        
         <div className="mb-8">
           <h2 className="step-title">{t('payment.title')}</h2>
           <p className="step-description">{t('payment.description')}</p>
