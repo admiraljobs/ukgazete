@@ -33,6 +33,7 @@ import { consentSchema, ConsentData, FORM_STEPS } from '@/lib/validations';
 import { FormNavigation } from '../FormNavigation';
 import { StripeProvider } from '../StripeProvider';
 import { COUNTRIES, cn } from '@/lib/utils';
+import { ApplePayDiagnostics } from './ApplePayDiagnostics';
 
 // ─── Pricing ────────────────────────────────────────────────
 const SERVICE_FEE = 49.99;
@@ -197,6 +198,8 @@ function PaymentForm({ onSuccess, onError, isProcessing, setIsProcessing }: Paym
   useEffect(() => {
     if (!stripe) return;
 
+    console.log('[Apple Pay] Initializing Payment Request...');
+
     const pr = stripe.paymentRequest({
       country: 'GB',
       currency: 'gbp',
@@ -208,9 +211,19 @@ function PaymentForm({ onSuccess, onError, isProcessing, setIsProcessing }: Paym
     });
 
     pr.canMakePayment().then((result) => {
+      console.log('[Apple Pay] canMakePayment result:', result);
       if (result) {
+        console.log('[Apple Pay] ✅ Available! Type:', result.applePay ? 'Apple Pay' : result.googlePay ? 'Google Pay' : 'Other');
         setPaymentRequest(pr);
+      } else {
+        console.log('[Apple Pay] ❌ Not available');
+        console.log('[Apple Pay] ApplePaySession exists?', typeof window.ApplePaySession !== 'undefined');
+        if (typeof window.ApplePaySession !== 'undefined') {
+          console.log('[Apple Pay] canMakePayments:', window.ApplePaySession.canMakePayments());
+        }
       }
+    }).catch((error) => {
+      console.error('[Apple Pay] Error:', error);
     });
   }, [stripe]);
 
@@ -270,7 +283,12 @@ function PaymentForm({ onSuccess, onError, isProcessing, setIsProcessing }: Paym
       <PaymentElement
         onReady={() => setPaymentReady(true)}
         options={{
-          layout: 'tabs',
+          layout: {
+            type: 'accordion',
+            defaultCollapsed: true,
+            radios: true,
+            spacedAccordionItems: true,
+          },
         }}
       />
 
@@ -438,6 +456,9 @@ export function ReviewStep() {
   if (showPayment && clientSecret) {
     return (
       <div>
+        {/* Diagnostics Panel */}
+        <ApplePayDiagnostics />
+        
         <div className="mb-8">
           <h2 className="step-title">{t('payment.title')}</h2>
           <p className="step-description">{t('payment.description')}</p>
