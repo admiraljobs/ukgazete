@@ -136,8 +136,14 @@ export function ApplePayDiagnostics() {
         )}
         
         {checks.paymentMethod && (
-          <div className="text-green-600 font-bold">
+          <div className="text-blue-600 font-bold">
             Payment Method: {checks.paymentMethod}
+          </div>
+        )}
+
+        {checks.stripeCanMakePayment && (
+          <div className="text-xs text-gray-600 mt-2 break-all">
+            Result: {JSON.stringify(checks.stripeCanMakePayment)}
           </div>
         )}
         

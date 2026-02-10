@@ -213,7 +213,7 @@ function PaymentForm({ onSuccess, onError, isProcessing, setIsProcessing }: Paym
     pr.canMakePayment().then((result) => {
       console.log('[Apple Pay] canMakePayment result:', result);
       if (result) {
-        console.log('[Apple Pay] ✅ Available! Type:', result.applePay ? 'Apple Pay' : result.googlePay ? 'Google Pay' : 'Other');
+        console.log('[Apple Pay] ✅ Available!');
         setPaymentRequest(pr);
       } else {
         console.log('[Apple Pay] ❌ Not available');
