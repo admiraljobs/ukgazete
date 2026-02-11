@@ -273,7 +273,7 @@ export default function HomePage() {
                 <div className="relative z-10">
                   <div className="text-brand-accent text-sm font-medium mb-2">ETA Service Package</div>
                   <div className="flex items-baseline justify-center gap-1 mb-6">
-                    <span className="text-5xl md:text-6xl font-display font-bold text-white">£49.99</span>
+                    <span className="text-5xl md:text-6xl font-display font-bold text-white">£79.00</span>
                     <span className="text-brand-light/50">+ £2.50 processing</span>
                   </div>
                   
