@@ -3,9 +3,10 @@ import Stripe from 'stripe';
 import { adminDb, adminStorage } from '@/lib/firebase-admin';
 import { resend, FROM_EMAIL } from '@/lib/resend';
 import { ConfirmationEmail } from '@/emails/confirmation';
+import { verifyTurnstile } from '@/lib/turnstile';
 
 const ADMIN_EMAIL =
-  process.env.ADMIN_NOTIFICATION_EMAIL || 'admiral2019@gmail.com';
+  process.env.ADMIN_NOTIFICATION_EMAIL || 'admin@ukgazete.com';
 
 if (!process.env.STRIPE_SECRET_KEY) {
   throw new Error('Missing STRIPE_SECRET_KEY');
@@ -53,7 +54,16 @@ async function uploadBase64Image(
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { formData, paymentIntentId } = body;
+    const { formData, paymentIntentId, turnstileToken } = body;
+
+    // ── Turnstile verification ────────────────────────────────
+    const turnstileResult = await verifyTurnstile(turnstileToken);
+    if (!turnstileResult.success) {
+      return NextResponse.json(
+        { error: turnstileResult.error },
+        { status: 403 }
+      );
+    }
 
     // ── Validate required fields ──────────────────────────────
     if (!formData || !paymentIntentId) {
@@ -204,7 +214,6 @@ export async function POST(request: Request) {
       });
     } catch (emailError) {
       console.error('Failed to send confirmation email:', emailError);
-      // Don't fail the submission if email fails
     }
 
     return NextResponse.json({

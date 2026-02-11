@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import {
   Mail,
@@ -14,12 +14,14 @@ import {
 } from 'lucide-react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { Turnstile } from '@/components/Turnstile';
 
 export default function ContactPage() {
   const t = useTranslations();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -28,16 +30,34 @@ export default function ContactPage() {
     message: '',
   });
 
+  const handleTurnstileVerify = useCallback((token: string) => {
+    setTurnstileToken(token);
+    if (error) setError(null);
+  }, [error]);
+
+  const handleTurnstileExpire = useCallback(() => {
+    setTurnstileToken(null);
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
     setError(null);
+
+    if (!turnstileToken) {
+      setError('Please complete the security verification.');
+      return;
+    }
+
+    setIsSubmitting(true);
 
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          turnstileToken,
+        }),
       });
 
       const data = await res.json();
@@ -49,15 +69,20 @@ export default function ContactPage() {
       setIsSubmitted(true);
     } catch (err) {
       setError(
-        err instanceof Error ? err.message : 'Something went wrong. Please try again.'
+        err instanceof Error
+          ? err.message
+          : 'Something went wrong. Please try again.'
       );
+      setTurnstileToken(null);
     } finally {
       setIsSubmitting(false);
     }
   };
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     if (error) setError(null);
@@ -181,6 +206,7 @@ export default function ContactPage() {
                         onClick={() => {
                           setIsSubmitted(false);
                           setError(null);
+                          setTurnstileToken(null);
                           setFormData({
                             name: '',
                             email: '',
@@ -281,10 +307,20 @@ export default function ContactPage() {
                         />
                       </div>
 
+                      {/* Turnstile Widget */}
+                      <div className="flex justify-center">
+                        <Turnstile
+                          onVerify={handleTurnstileVerify}
+                          onExpire={handleTurnstileExpire}
+                          onError={() => setError('Security verification failed. Please refresh and try again.')}
+                          theme="dark"
+                        />
+                      </div>
+
                       <button
                         type="submit"
-                        disabled={isSubmitting}
-                        className="btn-primary w-full flex items-center justify-center gap-2"
+                        disabled={isSubmitting || !turnstileToken}
+                        className="btn-primary w-full flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         {isSubmitting ? (
                           <>

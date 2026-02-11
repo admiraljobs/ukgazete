@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { resend, FROM_EMAIL } from '@/lib/resend';
+import { verifyTurnstile } from '@/lib/turnstile';
 
 const ADMIN_EMAIL =
   process.env.ADMIN_NOTIFICATION_EMAIL || 'admin@ukgazete.com';
@@ -7,7 +8,16 @@ const ADMIN_EMAIL =
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, email, referenceNumber, subject, message } = body;
+    const { name, email, referenceNumber, subject, message, turnstileToken } = body;
+
+    // ── Turnstile verification ────────────────────────────────
+    const turnstileResult = await verifyTurnstile(turnstileToken);
+    if (!turnstileResult.success) {
+      return NextResponse.json(
+        { error: turnstileResult.error },
+        { status: 403 }
+      );
+    }
 
     // ── Validation ────────────────────────────────────────────
     if (!name || typeof name !== 'string' || name.trim().length < 2) {
@@ -37,10 +47,6 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
-
-    const refLine = referenceNumber
-      ? `Reference Number: ${referenceNumber.toUpperCase()}`
-      : 'Reference Number: N/A';
 
     // ── Send notification to admin ────────────────────────────
     await resend.emails.send({
@@ -108,7 +114,7 @@ export async function POST(request: Request) {
             
             <table cellpadding="0" cellspacing="0" style="width: 64px; height: 64px; background-color: rgba(34, 197, 94, 0.2); border-radius: 50%; margin: 0 auto 24px;">
               <tr>
-                <td style="text-align: center; vertical-align: middle; color: #22c55e; font-size: 32px;">✓</td>
+                <td style="text-align: center; vertical-align: middle; color: #22c55e; font-size: 32px;">&#10003;</td>
               </tr>
             </table>
             
@@ -150,7 +156,6 @@ export async function POST(request: Request) {
       });
     } catch (confirmErr) {
       console.error('Failed to send user confirmation:', confirmErr);
-      // Don't fail the request if user confirmation fails
     }
 
     return NextResponse.json({ success: true });
