@@ -53,9 +53,8 @@ async function uploadBase64Image(
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { formData, paymentIntentId, turnstileToken } = body;
-
-   const { formData, paymentIntentId } = body;
+  
+    const { formData, paymentIntentId } = body;
 
     // ── Validate required fields ──────────────────────────────
     if (!formData || !paymentIntentId) {
