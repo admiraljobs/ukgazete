@@ -6,7 +6,6 @@ import {
   Heading,
   Hr,
   Html,
-  Img,
   Link,
   Preview,
   Section,
@@ -29,7 +28,7 @@ export const ConfirmationEmail = ({
   applicantName = 'John Smith',
   email = 'john@example.com',
   submittedAt = new Date().toLocaleDateString(),
-  statusUrl = 'https://uketa-service.com/status',
+  statusUrl = 'https://ukgazete.com/status',
 }: ConfirmationEmailProps) => {
   const previewText = `Your UK ETA application ${referenceNumber} has been received`;
 
@@ -42,10 +41,14 @@ export const ConfirmationEmail = ({
           {/* Header */}
           <Section style={header}>
             <Row>
-              <Column>
-                <div style={logoBox}>
-                  <Text style={logoText}>UK</Text>
-                </div>
+              <Column style={{ width: '60px' }}>
+                <table cellPadding="0" cellSpacing="0" style={logoBox}>
+                  <tr>
+                    <td style={logoCell}>
+                      <Text style={logoText}>UK</Text>
+                    </td>
+                  </tr>
+                </table>
               </Column>
               <Column>
                 <Text style={headerTitle}>UK ETA Service</Text>
@@ -56,33 +59,38 @@ export const ConfirmationEmail = ({
           {/* Main Content */}
           <Section style={content}>
             {/* Success Icon */}
-            <div style={successIconContainer}>
-              <Text style={successIcon}>✓</Text>
-            </div>
+            <table cellPadding="0" cellSpacing="0" style={successIconTable}>
+              <tr>
+                <td style={successIconCell}>
+                  <Text style={successIcon}>✓</Text>
+                </td>
+              </tr>
+            </table>
 
             <Heading style={heading}>Application Received!</Heading>
-            
+
+            <Text style={paragraph}>Dear {applicantName},</Text>
+
             <Text style={paragraph}>
-              Dear {applicantName},
-            </Text>
-            
-            <Text style={paragraph}>
-              Thank you for submitting your UK Electronic Travel Authorisation (ETA) application. 
-              We have received your payment and your application is now being processed.
+              Thank you for submitting your UK Electronic Travel Authorisation
+              (ETA) application. We have received your payment and your
+              application is now being processed.
             </Text>
 
             {/* Reference Box */}
             <Section style={referenceBox}>
               <Text style={referenceLabel}>Your Reference Number</Text>
               <Text style={referenceValue}>{referenceNumber}</Text>
-              <Text style={referenceNote}>Please save this for your records</Text>
+              <Text style={referenceNote}>
+                Please save this for your records
+              </Text>
             </Section>
 
             {/* Application Details */}
             <Section style={detailsSection}>
               <Text style={detailsTitle}>Application Details</Text>
               <Hr style={divider} />
-              
+
               <Row style={detailRow}>
                 <Column>
                   <Text style={detailLabel}>Applicant</Text>
@@ -91,7 +99,7 @@ export const ConfirmationEmail = ({
                   <Text style={detailValue}>{applicantName}</Text>
                 </Column>
               </Row>
-              
+
               <Row style={detailRow}>
                 <Column>
                   <Text style={detailLabel}>Email</Text>
@@ -100,7 +108,7 @@ export const ConfirmationEmail = ({
                   <Text style={detailValue}>{email}</Text>
                 </Column>
               </Row>
-              
+
               <Row style={detailRow}>
                 <Column>
                   <Text style={detailLabel}>Submitted</Text>
@@ -109,13 +117,13 @@ export const ConfirmationEmail = ({
                   <Text style={detailValue}>{submittedAt}</Text>
                 </Column>
               </Row>
-              
+
               <Row style={detailRow}>
                 <Column>
                   <Text style={detailLabel}>Status</Text>
                 </Column>
                 <Column>
-                  <Text style={statusBadge}>Paid - Awaiting Submission</Text>
+                  <Text style={statusBadge}>Paid – Awaiting Submission</Text>
                 </Column>
               </Row>
             </Section>
@@ -123,30 +131,67 @@ export const ConfirmationEmail = ({
             {/* What Happens Next */}
             <Section style={nextStepsSection}>
               <Text style={nextStepsTitle}>What Happens Next?</Text>
-              
-              <div style={stepItem}>
-                <Text style={stepNumber}>1</Text>
-                <div>
-                  <Text style={stepTitle}>Review & Verification</Text>
-                  <Text style={stepDesc}>Our team will review your application and documents within 24 hours.</Text>
-                </div>
-              </div>
-              
-              <div style={stepItem}>
-                <Text style={stepNumber}>2</Text>
-                <div>
-                  <Text style={stepTitle}>Submission to UK Authorities</Text>
-                  <Text style={stepDesc}>We'll submit your application to the UK Home Office on your behalf.</Text>
-                </div>
-              </div>
-              
-              <div style={stepItem}>
-                <Text style={stepNumber}>3</Text>
-                <div>
-                  <Text style={stepTitle}>Decision (Usually 3 Working Days)</Text>
-                  <Text style={stepDesc}>You'll receive an email notification once a decision is made.</Text>
-                </div>
-              </div>
+
+              <Row style={stepRow}>
+                <Column style={{ width: '40px', verticalAlign: 'top' }}>
+                  <table cellPadding="0" cellSpacing="0">
+                    <tr>
+                      <td style={stepNumberCell}>
+                        <Text style={stepNumberText}>1</Text>
+                      </td>
+                    </tr>
+                  </table>
+                </Column>
+                <Column style={{ verticalAlign: 'top' }}>
+                  <Text style={stepTitle}>Review &amp; Verification</Text>
+                  <Text style={stepDesc}>
+                    Our team will review your application and documents within 24
+                    hours.
+                  </Text>
+                </Column>
+              </Row>
+
+              <Row style={stepRow}>
+                <Column style={{ width: '40px', verticalAlign: 'top' }}>
+                  <table cellPadding="0" cellSpacing="0">
+                    <tr>
+                      <td style={stepNumberCell}>
+                        <Text style={stepNumberText}>2</Text>
+                      </td>
+                    </tr>
+                  </table>
+                </Column>
+                <Column style={{ verticalAlign: 'top' }}>
+                  <Text style={stepTitle}>
+                    Submission to UK Authorities
+                  </Text>
+                  <Text style={stepDesc}>
+                    We&apos;ll submit your application to the UK Home Office on
+                    your behalf.
+                  </Text>
+                </Column>
+              </Row>
+
+              <Row style={stepRow}>
+                <Column style={{ width: '40px', verticalAlign: 'top' }}>
+                  <table cellPadding="0" cellSpacing="0">
+                    <tr>
+                      <td style={stepNumberCell}>
+                        <Text style={stepNumberText}>3</Text>
+                      </td>
+                    </tr>
+                  </table>
+                </Column>
+                <Column style={{ verticalAlign: 'top' }}>
+                  <Text style={stepTitle}>
+                    Decision (Usually 3 Working Days)
+                  </Text>
+                  <Text style={stepDesc}>
+                    You&apos;ll receive an email notification once a decision is
+                    made.
+                  </Text>
+                </Column>
+              </Row>
             </Section>
 
             {/* CTA Button */}
@@ -157,10 +202,11 @@ export const ConfirmationEmail = ({
             </Section>
 
             <Text style={paragraph}>
-              If you have any questions, please don't hesitate to{' '}
-              <Link href="https://uketa-service.com/contact" style={link}>
+              If you have any questions, please don&apos;t hesitate to{' '}
+              <Link href="https://ukgazete.com/contact" style={link}>
                 contact our support team
-              </Link>.
+              </Link>
+              .
             </Text>
           </Section>
 
@@ -170,15 +216,22 @@ export const ConfirmationEmail = ({
               UK ETA Service | Electronic Travel Authorisation Assistance
             </Text>
             <Text style={footerDisclaimer}>
-              This is an independent service and is not affiliated with the UK Government.
+              This is an independent service and is not affiliated with the UK
+              Government.
             </Text>
             <Hr style={footerDivider} />
             <Text style={footerLinks}>
-              <Link href="https://uketa-service.com/privacy" style={footerLink}>Privacy Policy</Link>
+              <Link href="https://ukgazete.com/privacy" style={footerLink}>
+                Privacy Policy
+              </Link>
               {' • '}
-              <Link href="https://uketa-service.com/terms" style={footerLink}>Terms of Service</Link>
+              <Link href="https://ukgazete.com/terms" style={footerLink}>
+                Terms of Service
+              </Link>
               {' • '}
-              <Link href="https://uketa-service.com/contact" style={footerLink}>Contact Us</Link>
+              <Link href="https://ukgazete.com/contact" style={footerLink}>
+                Contact Us
+              </Link>
             </Text>
           </Section>
         </Container>
@@ -189,10 +242,12 @@ export const ConfirmationEmail = ({
 
 export default ConfirmationEmail;
 
-// Styles
+// ─── Styles ───────────────────────────────────────────────────
+
 const main = {
   backgroundColor: '#0b0c10',
-  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
+  fontFamily:
+    '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
 };
 
 const container = {
@@ -206,29 +261,32 @@ const header = {
   borderBottom: '1px solid #1f2833',
 };
 
-const logoBox = {
+const logoBox: React.CSSProperties = {
   width: '48px',
   height: '48px',
   backgroundColor: '#66fcf1',
   borderRadius: '12px',
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
+};
+
+const logoCell: React.CSSProperties = {
+  width: '48px',
+  height: '48px',
+  textAlign: 'center',
+  verticalAlign: 'middle',
 };
 
 const logoText = {
   color: '#0b0c10',
   fontSize: '18px',
-  fontWeight: 'bold',
+  fontWeight: 'bold' as const,
   margin: '0',
-  lineHeight: '48px',
   textAlign: 'center' as const,
 };
 
 const headerTitle = {
   color: '#ffffff',
   fontSize: '20px',
-  fontWeight: 'bold',
+  fontWeight: 'bold' as const,
   margin: '0',
   paddingLeft: '12px',
   lineHeight: '48px',
@@ -238,26 +296,31 @@ const content = {
   padding: '32px 24px',
 };
 
-const successIconContainer = {
+const successIconTable: React.CSSProperties = {
   width: '64px',
   height: '64px',
   backgroundColor: 'rgba(34, 197, 94, 0.2)',
   borderRadius: '50%',
   margin: '0 auto 24px',
-  textAlign: 'center' as const,
+};
+
+const successIconCell: React.CSSProperties = {
+  width: '64px',
+  height: '64px',
+  textAlign: 'center',
+  verticalAlign: 'middle',
 };
 
 const successIcon = {
   color: '#22c55e',
   fontSize: '32px',
-  lineHeight: '64px',
   margin: '0',
 };
 
 const heading = {
   color: '#ffffff',
   fontSize: '28px',
-  fontWeight: 'bold',
+  fontWeight: 'bold' as const,
   textAlign: 'center' as const,
   margin: '0 0 24px',
 };
@@ -281,7 +344,7 @@ const referenceBox = {
 const referenceLabel = {
   color: '#66fcf1',
   fontSize: '12px',
-  fontWeight: '600',
+  fontWeight: '600' as const,
   textTransform: 'uppercase' as const,
   letterSpacing: '1px',
   margin: '0 0 8px',
@@ -290,7 +353,7 @@ const referenceLabel = {
 const referenceValue = {
   color: '#ffffff',
   fontSize: '28px',
-  fontWeight: 'bold',
+  fontWeight: 'bold' as const,
   fontFamily: 'monospace',
   margin: '0 0 8px',
 };
@@ -311,7 +374,7 @@ const detailsSection = {
 const detailsTitle = {
   color: '#ffffff',
   fontSize: '16px',
-  fontWeight: '600',
+  fontWeight: '600' as const,
   margin: '0 0 12px',
 };
 
@@ -340,7 +403,7 @@ const detailValue = {
 const statusBadge = {
   color: '#eab308',
   fontSize: '14px',
-  fontWeight: '600',
+  fontWeight: '600' as const,
   margin: '0',
   textAlign: 'right' as const,
 };
@@ -352,33 +415,34 @@ const nextStepsSection = {
 const nextStepsTitle = {
   color: '#ffffff',
   fontSize: '18px',
-  fontWeight: '600',
+  fontWeight: '600' as const,
   margin: '0 0 20px',
 };
 
-const stepItem = {
-  display: 'flex',
+const stepRow = {
   marginBottom: '16px',
 };
 
-const stepNumber = {
+const stepNumberCell: React.CSSProperties = {
   width: '28px',
   height: '28px',
   backgroundColor: 'rgba(102, 252, 241, 0.2)',
-  color: '#66fcf1',
   borderRadius: '50%',
+  textAlign: 'center',
+  verticalAlign: 'middle',
+};
+
+const stepNumberText = {
+  color: '#66fcf1',
   fontSize: '14px',
-  fontWeight: 'bold',
-  textAlign: 'center' as const,
-  lineHeight: '28px',
-  marginRight: '12px',
-  flexShrink: 0,
+  fontWeight: 'bold' as const,
+  margin: '0',
 };
 
 const stepTitle = {
   color: '#ffffff',
   fontSize: '14px',
-  fontWeight: '600',
+  fontWeight: '600' as const,
   margin: '0 0 4px',
 };
 
@@ -400,9 +464,9 @@ const button = {
   padding: '14px 28px',
   borderRadius: '8px',
   fontSize: '16px',
-  fontWeight: 'bold',
+  fontWeight: 'bold' as const,
   textDecoration: 'none',
-  display: 'inline-block',
+  display: 'inline-block' as const,
 };
 
 const link = {

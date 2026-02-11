@@ -2,14 +2,15 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { 
-  Mail, 
-  MessageSquare, 
-  Send, 
-  Loader2, 
+import {
+  Mail,
+  MessageSquare,
+  Send,
+  Loader2,
   CheckCircle,
   Clock,
-  HelpCircle
+  HelpCircle,
+  AlertCircle,
 } from 'lucide-react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
@@ -18,6 +19,7 @@ export default function ContactPage() {
   const t = useTranslations();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -29,16 +31,36 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(null);
 
-    // TODO: Replace with actual API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
 
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || 'Failed to send message');
+      }
+
+      setIsSubmitted(true);
+    } catch (err) {
+      setError(
+        err instanceof Error ? err.message : 'Something went wrong. Please try again.'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    if (error) setError(null);
   };
 
   const subjects = [
@@ -54,7 +76,7 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      
+
       <main className="flex-1 py-12 md:py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
@@ -67,7 +89,8 @@ export default function ContactPage() {
                 Contact Us
               </h1>
               <p className="text-brand-light/60 max-w-xl mx-auto">
-                Have a question or need help with your application? We're here to assist you.
+                Have a question or need help with your application? We&apos;re
+                here to assist you.
               </p>
             </div>
 
@@ -80,13 +103,17 @@ export default function ContactPage() {
                       <Mail className="w-5 h-5 text-brand-accent" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-white mb-1">Email Us</h3>
-                      <p className="text-brand-light/60 text-sm mb-2">For general inquiries</p>
-                      <a 
-                        href="mailto:support@uketa-service.com" 
+                      <h3 className="font-semibold text-white mb-1">
+                        Email Us
+                      </h3>
+                      <p className="text-brand-light/60 text-sm mb-2">
+                        For general inquiries
+                      </p>
+                      <a
+                        href="mailto:support@ukgazete.com"
                         className="text-brand-accent hover:underline text-sm"
                       >
-                        support@uketa-service.com
+                        support@ukgazete.com
                       </a>
                     </div>
                   </div>
@@ -98,9 +125,12 @@ export default function ContactPage() {
                       <Clock className="w-5 h-5 text-brand-accent" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-white mb-1">Response Time</h3>
+                      <h3 className="font-semibold text-white mb-1">
+                        Response Time
+                      </h3>
                       <p className="text-brand-light/60 text-sm">
-                        We typically respond within 24 hours during business days.
+                        We typically respond within 24 hours during business
+                        days.
                       </p>
                     </div>
                   </div>
@@ -112,15 +142,17 @@ export default function ContactPage() {
                       <HelpCircle className="w-5 h-5 text-brand-accent" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-white mb-1">Check Status</h3>
+                      <h3 className="font-semibold text-white mb-1">
+                        Check Status
+                      </h3>
                       <p className="text-brand-light/60 text-sm mb-2">
                         Track your application online
                       </p>
-                      <a 
-                        href="/status" 
+                      <a
+                        href="/status"
                         className="text-brand-accent hover:underline text-sm"
                       >
-                        Check Status →
+                        Check Status &rarr;
                       </a>
                     </div>
                   </div>
@@ -135,13 +167,20 @@ export default function ContactPage() {
                       <div className="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center mx-auto mb-6">
                         <CheckCircle className="w-8 h-8 text-green-400" />
                       </div>
-                      <h2 className="text-2xl font-bold text-white mb-2">Message Sent!</h2>
-                      <p className="text-brand-light/60 mb-6">
-                        Thank you for contacting us. We'll get back to you within 24 hours.
+                      <h2 className="text-2xl font-bold text-white mb-2">
+                        Message Sent!
+                      </h2>
+                      <p className="text-brand-light/60 mb-2">
+                        Thank you for contacting us. We&apos;ll get back to you
+                        within 24 hours.
+                      </p>
+                      <p className="text-brand-light/40 text-sm mb-6">
+                        A confirmation has been sent to your email.
                       </p>
                       <button
                         onClick={() => {
                           setIsSubmitted(false);
+                          setError(null);
                           setFormData({
                             name: '',
                             email: '',
@@ -157,6 +196,13 @@ export default function ContactPage() {
                     </div>
                   ) : (
                     <form onSubmit={handleSubmit} className="space-y-6">
+                      {error && (
+                        <div className="flex items-center gap-3 p-4 rounded-lg bg-red-500/10 border border-red-500/20">
+                          <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0" />
+                          <p className="text-red-400 text-sm">{error}</p>
+                        </div>
+                      )}
+
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                           <label className="input-label">Your Name</label>
@@ -168,6 +214,7 @@ export default function ContactPage() {
                             placeholder="John Smith"
                             className="input-field"
                             required
+                            minLength={2}
                           />
                         </div>
                         <div>
@@ -188,7 +235,9 @@ export default function ContactPage() {
                         <div>
                           <label className="input-label">
                             Reference Number{' '}
-                            <span className="text-brand-light/40">(if applicable)</span>
+                            <span className="text-brand-light/40">
+                              (if applicable)
+                            </span>
                           </label>
                           <input
                             type="text"
@@ -228,6 +277,7 @@ export default function ContactPage() {
                           rows={5}
                           className="input-field resize-none"
                           required
+                          minLength={10}
                         />
                       </div>
 

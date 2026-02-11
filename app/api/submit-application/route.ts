@@ -4,6 +4,9 @@ import { adminDb, adminStorage } from '@/lib/firebase-admin';
 import { resend, FROM_EMAIL } from '@/lib/resend';
 import { ConfirmationEmail } from '@/emails/confirmation';
 
+const ADMIN_EMAIL =
+  process.env.ADMIN_NOTIFICATION_EMAIL || 'admiral2019@gmail.com';
+
 if (!process.env.STRIPE_SECRET_KEY) {
   throw new Error('Missing STRIPE_SECRET_KEY');
 }
@@ -24,7 +27,6 @@ async function uploadBase64Image(
   base64Data: string,
   path: string
 ): Promise<string> {
-  // Strip the data URI prefix (e.g. "data:image/jpeg;base64,")
   const matches = base64Data.match(/^data:([^;]+);base64,(.+)$/);
   if (!matches) {
     throw new Error('Invalid base64 image data');
@@ -43,7 +45,6 @@ async function uploadBase64Image(
     },
   });
 
-  // Make the file publicly readable
   await file.makePublic();
 
   return `https://storage.googleapis.com/${bucket.name}/${path}`;
@@ -54,6 +55,7 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { formData, paymentIntentId } = body;
 
+    // ── Validate required fields ──────────────────────────────
     if (!formData || !paymentIntentId) {
       return NextResponse.json(
         { error: 'Missing form data or payment ID' },
@@ -61,7 +63,14 @@ export async function POST(request: Request) {
       );
     }
 
-    // Verify the payment was actually successful with Stripe
+    if (!formData.email || typeof formData.email !== 'string') {
+      return NextResponse.json(
+        { error: 'Valid email is required' },
+        { status: 400 }
+      );
+    }
+
+    // ── Verify payment ────────────────────────────────────────
     const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
 
     if (paymentIntent.status !== 'succeeded') {
@@ -71,27 +80,51 @@ export async function POST(request: Request) {
       );
     }
 
+    // ── Idempotency: prevent duplicate submissions ────────────
+    const existingSnap = await adminDb
+      .collection('eta-applications')
+      .where('paymentIntentId', '==', paymentIntentId)
+      .limit(1)
+      .get();
+
+    if (!existingSnap.empty) {
+      const existing = existingSnap.docs[0].data();
+      return NextResponse.json({
+        success: true,
+        referenceNumber: existing.referenceNumber,
+        duplicate: true,
+      });
+    }
+
     const referenceNumber = generateReferenceNumber();
     const now = new Date().toISOString();
 
-    // Upload photos to Firebase Storage
+    // ── Upload photos ─────────────────────────────────────────
     const photoUrls: Record<string, string> = {};
 
-    if (formData.selfiePhoto && formData.selfiePhoto.startsWith('data:')) {
-      photoUrls.selfie = await uploadBase64Image(
-        formData.selfiePhoto,
-        `applications/${referenceNumber}/selfie.jpg`
-      );
+    if (formData.selfiePhoto?.startsWith('data:')) {
+      try {
+        photoUrls.selfie = await uploadBase64Image(
+          formData.selfiePhoto,
+          `applications/${referenceNumber}/selfie.jpg`
+        );
+      } catch (uploadErr) {
+        console.error('Selfie upload failed:', uploadErr);
+      }
     }
 
-    if (formData.passportPhoto && formData.passportPhoto.startsWith('data:')) {
-      photoUrls.passport = await uploadBase64Image(
-        formData.passportPhoto,
-        `applications/${referenceNumber}/passport.jpg`
-      );
+    if (formData.passportPhoto?.startsWith('data:')) {
+      try {
+        photoUrls.passport = await uploadBase64Image(
+          formData.passportPhoto,
+          `applications/${referenceNumber}/passport.jpg`
+        );
+      } catch (uploadErr) {
+        console.error('Passport photo upload failed:', uploadErr);
+      }
     }
 
-    // Build the application document (exclude raw base64 from Firestore)
+    // ── Build application document ────────────────────────────
     const applicationData = {
       referenceNumber,
       status: 'submitted',
@@ -99,14 +132,12 @@ export async function POST(request: Request) {
       paymentAmount: paymentIntent.amount,
       paymentCurrency: paymentIntent.currency,
 
-      // Passport
       passportCountry: formData.passportCountry || null,
       passportNumber: formData.passportNumber || null,
       issueDate: formData.issueDate || null,
       expiryDate: formData.expiryDate || null,
       issuingAuthority: formData.issuingAuthority || null,
 
-      // Personal
       firstName: formData.firstName || null,
       lastName: formData.lastName || null,
       dateOfBirth: formData.dateOfBirth || null,
@@ -114,21 +145,17 @@ export async function POST(request: Request) {
       nationality: formData.nationality || null,
       birthCountry: formData.birthCountry || null,
 
-      // Contact
-      email: formData.email || null,
+      email: formData.email,
       phone: formData.phone || null,
 
-      // Photos (URLs, not base64)
       selfiePhotoUrl: photoUrls.selfie || null,
       passportPhotoUrl: photoUrls.passport || null,
 
-      // Background
       criminalConvictions: formData.criminalConvictions || null,
       immigrationBreaches: formData.immigrationBreaches || null,
       previousRefusals: formData.previousRefusals || null,
       terrorismInvolvement: formData.terrorismInvolvement || null,
 
-      // Address
       addressLine1: formData.addressLine1 || null,
       addressLine2: formData.addressLine2 || null,
       city: formData.city || null,
@@ -136,34 +163,36 @@ export async function POST(request: Request) {
       postcode: formData.postcode || null,
       country: formData.country || null,
 
-      // Emergency
       emergencyName: formData.emergencyName || null,
       emergencyRelationship: formData.emergencyRelationship || null,
       emergencyPhone: formData.emergencyPhone || null,
 
-      // Meta
       submittedAt: now,
       updatedAt: now,
     };
 
-    // Save to Firestore
+    // ── Save to Firestore ─────────────────────────────────────
     await adminDb
       .collection('eta-applications')
       .doc(referenceNumber)
       .set(applicationData);
 
-    // Send confirmation email
-    const statusUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'https://uketa-service.com'}/status`;
-    const applicantName = `${formData.firstName} ${formData.lastName}`;
+    // ── Send confirmation email ───────────────────────────────
+    const statusUrl = `${
+      process.env.NEXT_PUBLIC_APP_URL || 'https://ukgazete.com'
+    }/status`;
+
+    const applicantName = `${formData.firstName || ''} ${formData.lastName || ''}`.trim();
 
     try {
       await resend.emails.send({
         from: FROM_EMAIL,
         to: formData.email,
+        bcc: [ADMIN_EMAIL],
         subject: `Application Received - ${referenceNumber}`,
         react: ConfirmationEmail({
           referenceNumber,
-          applicantName,
+          applicantName: applicantName || 'Applicant',
           email: formData.email,
           submittedAt: new Date().toLocaleDateString('en-GB', {
             day: 'numeric',
@@ -175,7 +204,7 @@ export async function POST(request: Request) {
       });
     } catch (emailError) {
       console.error('Failed to send confirmation email:', emailError);
-      // Don't fail the request - application is already saved
+      // Don't fail the submission if email fails
     }
 
     return NextResponse.json({
@@ -183,7 +212,8 @@ export async function POST(request: Request) {
       referenceNumber,
     });
   } catch (error: unknown) {
-    const message = error instanceof Error ? error.message : 'Submission failed';
+    const message =
+      error instanceof Error ? error.message : 'Submission failed';
     console.error('Submit application error:', error);
     return NextResponse.json({ error: message }, { status: 500 });
   }

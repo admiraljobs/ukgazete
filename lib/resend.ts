@@ -6,7 +6,7 @@ if (!process.env.RESEND_API_KEY) {
 
 export const resend = new Resend(process.env.RESEND_API_KEY);
 
-export const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'UK ETA Service <noreply@uketa-service.com>';
+export const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || 'UK ETA Service <noreply@ukgazete.com>';
 
 // Email types for different notifications
 export type EmailType = 'confirmation' | 'submitted' | 'approved' | 'refused';
