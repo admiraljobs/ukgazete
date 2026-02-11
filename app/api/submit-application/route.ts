@@ -3,7 +3,6 @@ import Stripe from 'stripe';
 import { adminDb, adminStorage } from '@/lib/firebase-admin';
 import { resend, FROM_EMAIL } from '@/lib/resend';
 import { ConfirmationEmail } from '@/emails/confirmation';
-import { verifyTurnstile } from '@/lib/turnstile';
 
 const ADMIN_EMAIL =
   process.env.ADMIN_NOTIFICATION_EMAIL || 'admin@ukgazete.com';
@@ -56,14 +55,7 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { formData, paymentIntentId, turnstileToken } = body;
 
-    // ── Turnstile verification ────────────────────────────────
-    const turnstileResult = await verifyTurnstile(turnstileToken);
-    if (!turnstileResult.success) {
-      return NextResponse.json(
-        { error: turnstileResult.error },
-        { status: 403 }
-      );
-    }
+   const { formData, paymentIntentId } = body;
 
     // ── Validate required fields ──────────────────────────────
     if (!formData || !paymentIntentId) {
