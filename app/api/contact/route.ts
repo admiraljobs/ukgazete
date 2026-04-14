@@ -55,37 +55,34 @@ export async function POST(request: Request) {
       replyTo: email,
       subject: `[Contact Form] ${subject} - ${name}`,
       html: `
-        <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; background-color: #0b0c10; color: #c5c6c7; padding: 32px;">
-          <div style="border-bottom: 1px solid #1f2833; padding-bottom: 16px; margin-bottom: 24px;">
-            <h2 style="color: #66fcf1; margin: 0;">New Contact Form Submission</h2>
-          </div>
-          
-          <table style="width: 100%; border-collapse: collapse;">
-            <tr>
-              <td style="padding: 8px 12px; color: #888; width: 140px;">Name</td>
-              <td style="padding: 8px 12px; color: #ffffff;">${name}</td>
-            </tr>
-            <tr>
-              <td style="padding: 8px 12px; color: #888;">Email</td>
-              <td style="padding: 8px 12px;"><a href="mailto:${email}" style="color: #66fcf1;">${email}</a></td>
-            </tr>
-            <tr>
-              <td style="padding: 8px 12px; color: #888;">Reference</td>
-              <td style="padding: 8px 12px; color: #ffffff;">${referenceNumber ? referenceNumber.toUpperCase() : 'N/A'}</td>
-            </tr>
-            <tr>
-              <td style="padding: 8px 12px; color: #888;">Subject</td>
-              <td style="padding: 8px 12px; color: #ffffff;">${subject}</td>
-            </tr>
-          </table>
-          
-          <div style="background-color: #1f2833; border-radius: 8px; padding: 16px; margin-top: 24px;">
-            <p style="color: #888; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 8px;">Message</p>
-            <p style="color: #c5c6c7; line-height: 1.6; margin: 0; white-space: pre-wrap;">${message}</p>
-          </div>
-          
-          <div style="margin-top: 24px; text-align: center;">
-            <a href="mailto:${email}?subject=Re: ${encodeURIComponent(subject)}" style="display: inline-block; background-color: #66fcf1; color: #0b0c10; padding: 10px 24px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 14px;">Reply to ${name}</a>
+        <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; background-color: #f4f7fb; padding: 32px 16px;">
+          <div style="background: #ffffff; border-radius: 12px; overflow: hidden; border: 1px solid #dde6f0;">
+
+            <div style="background: #1d70b8; padding: 18px 24px;">
+              <div style="color: #ffffff; font-size: 16px; font-weight: bold;">New Contact Form Submission</div>
+            </div>
+
+            <div style="padding: 24px;">
+              <table style="width: 100%; border-collapse: collapse; background: #f4f7fb; border-radius: 10px; overflow: hidden;">
+                <tr><td style="padding: 8px 16px; color: #5b7fa6; font-size: 13px; width: 130px; background: #eef2f8;">Name</td><td style="padding: 8px 16px; color: #0f172a; font-weight: 600;">${name}</td></tr>
+                <tr><td style="padding: 8px 16px; color: #5b7fa6; font-size: 13px; background: #eef2f8;">Email</td><td style="padding: 8px 16px;"><a href="mailto:${email}" style="color: #1d70b8;">${email}</a></td></tr>
+                <tr><td style="padding: 8px 16px; color: #5b7fa6; font-size: 13px; background: #eef2f8;">Reference</td><td style="padding: 8px 16px; color: #334155; font-family: monospace;">${referenceNumber ? referenceNumber.toUpperCase() : 'N/A'}</td></tr>
+                <tr><td style="padding: 8px 16px; color: #5b7fa6; font-size: 13px; background: #eef2f8;">Subject</td><td style="padding: 8px 16px; color: #334155;">${subject}</td></tr>
+              </table>
+
+              <div style="background: #eef2f8; border-radius: 10px; padding: 16px 20px; margin-top: 16px; border-left: 4px solid #1d70b8;">
+                <p style="color: #5b7fa6; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 8px;">Message</p>
+                <p style="color: #334155; line-height: 1.7; margin: 0; font-size: 14px; white-space: pre-wrap;">${message}</p>
+              </div>
+
+              <div style="text-align: center; margin-top: 20px;">
+                <a href="mailto:${email}?subject=Re: ${encodeURIComponent(subject)}" style="display: inline-block; background-color: #1d70b8; color: #ffffff; padding: 11px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 14px;">Reply to ${name}</a>
+              </div>
+            </div>
+
+            <div style="background: #eef2f8; padding: 12px 24px; text-align: center; border-top: 1px solid #dde6f0;">
+              <p style="color: #5b7fa6; font-size: 12px; margin: 0;">UK ETA Service — Contact Form</p>
+            </div>
           </div>
         </div>
       `,
@@ -98,58 +95,58 @@ export async function POST(request: Request) {
         to: email,
         subject: `We've received your message - UK ETA Service`,
         html: `
-          <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; background-color: #0b0c10; color: #c5c6c7; padding: 32px;">
-            <div style="border-bottom: 1px solid #1f2833; padding-bottom: 16px; margin-bottom: 24px;">
-              <table cellpadding="0" cellspacing="0">
-                <tr>
-                  <td style="width: 48px; height: 48px; background-color: #66fcf1; border-radius: 12px; text-align: center; vertical-align: middle;">
-                    <span style="color: #0b0c10; font-size: 18px; font-weight: bold;">UK</span>
-                  </td>
-                  <td style="padding-left: 12px;">
-                    <span style="color: #ffffff; font-size: 20px; font-weight: bold;">UK ETA Service</span>
-                  </td>
-                </tr>
-              </table>
-            </div>
-            
-            <table cellpadding="0" cellspacing="0" style="width: 64px; height: 64px; background-color: rgba(34, 197, 94, 0.2); border-radius: 50%; margin: 0 auto 24px;">
-              <tr>
-                <td style="text-align: center; vertical-align: middle; color: #22c55e; font-size: 32px;">&#10003;</td>
-              </tr>
-            </table>
-            
-            <h1 style="color: #ffffff; font-size: 24px; text-align: center; margin: 0 0 24px;">Message Received</h1>
-            
-            <p style="color: #c5c6c7; font-size: 16px; line-height: 24px;">Dear ${name},</p>
-            
-            <p style="color: #c5c6c7; font-size: 16px; line-height: 24px;">
-              Thank you for contacting us. We've received your message and our team will get back to you within 24 hours.
-            </p>
-            
-            <div style="background-color: #1f2833; border-radius: 12px; padding: 20px; margin: 24px 0;">
-              <p style="color: #888; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 8px;">Your Message Summary</p>
-              <table style="width: 100%; border-collapse: collapse;">
-                <tr>
-                  <td style="padding: 6px 0; color: #888; font-size: 14px;">Subject</td>
-                  <td style="padding: 6px 0; color: #ffffff; font-size: 14px; text-align: right;">${subject}</td>
-                </tr>
-                ${referenceNumber ? `
-                <tr>
-                  <td style="padding: 6px 0; color: #888; font-size: 14px;">Reference</td>
-                  <td style="padding: 6px 0; color: #ffffff; font-size: 14px; text-align: right;">${referenceNumber.toUpperCase()}</td>
-                </tr>
-                ` : ''}
-              </table>
-            </div>
-            
-            <p style="color: #c5c6c7; font-size: 14px; line-height: 22px;">
-              If your inquiry is about an existing application, you can also 
-              <a href="https://ukgazete.com/status" style="color: #66fcf1; text-decoration: underline;">check your application status</a> online.
-            </p>
-            
-            <div style="border-top: 1px solid #1f2833; margin-top: 32px; padding-top: 24px; text-align: center;">
-              <p style="color: #888; font-size: 14px; margin: 0 0 8px;">UK ETA Service | Electronic Travel Authorisation Assistance</p>
-              <p style="color: #666; font-size: 12px; margin: 0;">This is an independent service and is not affiliated with the UK Government.</p>
+          <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; background-color: #f4f7fb; padding: 32px 16px;">
+            <div style="background: #ffffff; border-radius: 12px; overflow: hidden; border: 1px solid #dde6f0;">
+
+              <div style="background: #1d70b8; padding: 20px 28px;">
+                <table cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td style="width: 44px; height: 44px; background: rgba(255,255,255,0.2); border-radius: 8px; text-align: center; vertical-align: middle;">
+                      <span style="color: #ffffff; font-size: 15px; font-weight: bold;">UK</span>
+                    </td>
+                    <td style="padding-left: 12px;">
+                      <div style="color: #ffffff; font-size: 17px; font-weight: bold;">UK ETA Service</div>
+                      <div style="color: rgba(255,255,255,0.75); font-size: 12px;">Electronic Travel Authorisation</div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+
+              <div style="padding: 32px 28px;">
+
+                <table cellpadding="0" cellspacing="0" style="width: 56px; height: 56px; background: rgba(29, 112, 184, 0.1); border-radius: 50%; margin: 0 auto 20px;">
+                  <tr><td style="text-align: center; vertical-align: middle; color: #1d70b8; font-size: 24px; font-weight: bold;">&#10003;</td></tr>
+                </table>
+
+                <h1 style="color: #0f172a; font-size: 22px; text-align: center; margin: 0 0 20px;">Message Received</h1>
+
+                <p style="color: #334155; font-size: 15px; line-height: 24px; margin: 0 0 14px;">Dear ${name},</p>
+                <p style="color: #334155; font-size: 15px; line-height: 24px; margin: 0 0 20px;">
+                  Thank you for contacting us. We have received your message and our team will get back to you within 24 hours.
+                </p>
+
+                <div style="background: #eef2f8; border-radius: 10px; padding: 16px 20px; margin: 0 0 20px; border-left: 4px solid #1d70b8;">
+                  <p style="color: #5b7fa6; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 10px;">Your Message Summary</p>
+                  <table style="width: 100%; border-collapse: collapse;">
+                    <tr>
+                      <td style="padding: 5px 0; color: #5b7fa6; font-size: 13px;">Subject</td>
+                      <td style="padding: 5px 0; color: #0f172a; font-size: 13px; font-weight: 600; text-align: right;">${subject}</td>
+                    </tr>
+                    ${referenceNumber ? `<tr><td style="padding: 5px 0; color: #5b7fa6; font-size: 13px;">Reference</td><td style="padding: 5px 0; color: #0f172a; font-size: 13px; font-family: monospace; text-align: right;">${referenceNumber.toUpperCase()}</td></tr>` : ''}
+                  </table>
+                </div>
+
+                <p style="color: #334155; font-size: 14px; line-height: 22px; margin: 0;">
+                  If your enquiry is about an existing application, you can
+                  <a href="https://ukgazete.com/status" style="color: #1d70b8;">check your application status</a> online at any time.
+                </p>
+              </div>
+
+              <div style="background: #eef2f8; padding: 14px 28px; border-top: 1px solid #dde6f0; text-align: center;">
+                <p style="color: #5b7fa6; font-size: 13px; margin: 0 0 4px;">UK ETA Service · Electronic Travel Authorisation Assistance</p>
+                <p style="color: #94a3b8; font-size: 11px; margin: 0;">Independent service — not affiliated with the UK Government.</p>
+              </div>
+
             </div>
           </div>
         `,

@@ -221,168 +221,120 @@ export async function POST(request: Request) {
         to: ADMIN_EMAIL,
         subject: `🆕 New ETA Application - ${referenceNumber}`,
         html: `
-          <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 640px; margin: 0 auto; background-color: #0b0c10; color: #c5c6c7; padding: 32px;">
-            <div style="border-bottom: 1px solid #1f2833; padding-bottom: 16px; margin-bottom: 24px;">
-              <h2 style="color: #66fcf1; margin: 0 0 4px;">New ETA Application</h2>
-              <p style="color: #888; margin: 0; font-size: 14px;">${submittedDate}</p>
-            </div>
+          <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 640px; margin: 0 auto; background-color: #f4f7fb; padding: 32px 16px;">
+            <div style="background: #ffffff; border-radius: 12px; overflow: hidden; border: 1px solid #dde6f0;">
 
-            <!-- Reference & Payment -->
-            <div style="background-color: #1f2833; border-radius: 12px; padding: 20px; margin-bottom: 20px; border-left: 4px solid #66fcf1;">
-              <table style="width: 100%; border-collapse: collapse;">
-                <tr>
-                  <td style="padding: 6px 0; color: #888; font-size: 13px; width: 160px;">Reference</td>
-                  <td style="padding: 6px 0; color: #66fcf1; font-size: 16px; font-weight: bold; font-family: monospace;">${referenceNumber}</td>
-                </tr>
-                <tr>
-                  <td style="padding: 6px 0; color: #888; font-size: 13px;">Payment</td>
-                  <td style="padding: 6px 0; color: #22c55e; font-weight: 600;">£${(paymentIntent.amount / 100).toFixed(2)} ${paymentIntent.currency.toUpperCase()} ✓</td>
-                </tr>
-                <tr>
-                  <td style="padding: 6px 0; color: #888; font-size: 13px;">Stripe ID</td>
-                  <td style="padding: 6px 0; color: #c5c6c7; font-size: 12px; font-family: monospace;">${paymentIntentId}</td>
-                </tr>
-              </table>
-            </div>
+              <!-- Header -->
+              <div style="background: #1d70b8; padding: 20px 24px; display: flex; align-items: center;">
+                <div style="width: 40px; height: 40px; background: rgba(255,255,255,0.2); border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; margin-right: 12px;">
+                  <span style="color: #ffffff; font-size: 14px; font-weight: bold;">UK</span>
+                </div>
+                <div style="display: inline-block;">
+                  <div style="color: #ffffff; font-size: 16px; font-weight: bold; margin: 0;">New ETA Application</div>
+                  <div style="color: rgba(255,255,255,0.75); font-size: 13px;">${submittedDate}</div>
+                </div>
+              </div>
 
-            <!-- Applicant Details -->
-            <div style="background-color: #1f2833; border-radius: 12px; padding: 20px; margin-bottom: 20px;">
-              <h3 style="color: #ffffff; margin: 0 0 12px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Applicant</h3>
-              <table style="width: 100%; border-collapse: collapse;">
-                <tr>
-                  <td style="padding: 6px 0; color: #888; font-size: 13px; width: 160px;">Name</td>
-                  <td style="padding: 6px 0; color: #ffffff; font-weight: 600;">${applicantName || 'N/A'}</td>
-                </tr>
-                <tr>
-                  <td style="padding: 6px 0; color: #888; font-size: 13px;">Email</td>
-                  <td style="padding: 6px 0;"><a href="mailto:${formData.email}" style="color: #66fcf1;">${formData.email}</a></td>
-                </tr>
-                <tr>
-                  <td style="padding: 6px 0; color: #888; font-size: 13px;">Phone</td>
-                  <td style="padding: 6px 0; color: #c5c6c7;">${formData.phone || 'N/A'}</td>
-                </tr>
-                <tr>
-                  <td style="padding: 6px 0; color: #888; font-size: 13px;">Date of Birth</td>
-                  <td style="padding: 6px 0; color: #c5c6c7;">${formData.dateOfBirth || 'N/A'}</td>
-                </tr>
-                <tr>
-                  <td style="padding: 6px 0; color: #888; font-size: 13px;">Gender</td>
-                  <td style="padding: 6px 0; color: #c5c6c7;">${formData.gender || 'N/A'}</td>
-                </tr>
-                <tr>
-                  <td style="padding: 6px 0; color: #888; font-size: 13px;">Nationality</td>
-                  <td style="padding: 6px 0; color: #c5c6c7;">${formData.nationality || 'N/A'}</td>
-                </tr>
-                <tr>
-                  <td style="padding: 6px 0; color: #888; font-size: 13px;">Birth Country</td>
-                  <td style="padding: 6px 0; color: #c5c6c7;">${formData.birthCountry || 'N/A'}</td>
-                </tr>
-              </table>
-            </div>
+              <div style="padding: 24px;">
 
-            <!-- Passport -->
-            <div style="background-color: #1f2833; border-radius: 12px; padding: 20px; margin-bottom: 20px;">
-              <h3 style="color: #ffffff; margin: 0 0 12px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Passport</h3>
-              <table style="width: 100%; border-collapse: collapse;">
-                <tr>
-                  <td style="padding: 6px 0; color: #888; font-size: 13px; width: 160px;">Country</td>
-                  <td style="padding: 6px 0; color: #c5c6c7;">${formData.passportCountry || 'N/A'}</td>
-                </tr>
-                <tr>
-                  <td style="padding: 6px 0; color: #888; font-size: 13px;">Passport Number</td>
-                  <td style="padding: 6px 0; color: #ffffff; font-weight: 600;">${formData.passportNumber || 'N/A'}</td>
-                </tr>
-                <tr>
-                  <td style="padding: 6px 0; color: #888; font-size: 13px;">Issue Date</td>
-                  <td style="padding: 6px 0; color: #c5c6c7;">${formData.issueDate || 'N/A'}</td>
-                </tr>
-                <tr>
-                  <td style="padding: 6px 0; color: #888; font-size: 13px;">Expiry Date</td>
-                  <td style="padding: 6px 0; color: #c5c6c7;">${formData.expiryDate || 'N/A'}</td>
-                </tr>
-                <tr>
-                  <td style="padding: 6px 0; color: #888; font-size: 13px;">Issuing Authority</td>
-                  <td style="padding: 6px 0; color: #c5c6c7;">${formData.issuingAuthority || 'N/A'}</td>
-                </tr>
-              </table>
-            </div>
+                <!-- Reference & Payment -->
+                <div style="background: #eef2f8; border-radius: 10px; padding: 16px 20px; margin-bottom: 16px; border-left: 4px solid #1d70b8;">
+                  <table style="width: 100%; border-collapse: collapse;">
+                    <tr>
+                      <td style="padding: 5px 0; color: #5b7fa6; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; width: 160px;">Reference</td>
+                      <td style="padding: 5px 0; color: #0f172a; font-size: 16px; font-weight: bold; font-family: monospace; letter-spacing: 1px;">${referenceNumber}</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 5px 0; color: #5b7fa6; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;">Payment</td>
+                      <td style="padding: 5px 0; color: #16a34a; font-weight: 600;">£${(paymentIntent.amount / 100).toFixed(2)} ${paymentIntent.currency.toUpperCase()} ✓</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 5px 0; color: #5b7fa6; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;">Stripe ID</td>
+                      <td style="padding: 5px 0; color: #334155; font-size: 12px; font-family: monospace;">${paymentIntentId}</td>
+                    </tr>
+                  </table>
+                </div>
 
-            <!-- Background Checks -->
-            <div style="background-color: #1f2833; border-radius: 12px; padding: 20px; margin-bottom: 20px;">
-              <h3 style="color: #ffffff; margin: 0 0 12px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Background</h3>
-              <table style="width: 100%; border-collapse: collapse;">
-                <tr>
-                  <td style="padding: 6px 0; color: #888; font-size: 13px; width: 160px;">Criminal Convictions</td>
-                  <td style="padding: 6px 0; color: ${formData.criminalConvictions === 'yes' ? '#ef4444' : '#22c55e'}; font-weight: 600;">${formData.criminalConvictions === 'yes' ? '⚠️ YES' : '✓ No'}</td>
-                </tr>
-                <tr>
-                  <td style="padding: 6px 0; color: #888; font-size: 13px;">Immigration Breaches</td>
-                  <td style="padding: 6px 0; color: ${formData.immigrationBreaches === 'yes' ? '#ef4444' : '#22c55e'}; font-weight: 600;">${formData.immigrationBreaches === 'yes' ? '⚠️ YES' : '✓ No'}</td>
-                </tr>
-                <tr>
-                  <td style="padding: 6px 0; color: #888; font-size: 13px;">Previous Refusals</td>
-                  <td style="padding: 6px 0; color: ${formData.previousRefusals === 'yes' ? '#ef4444' : '#22c55e'}; font-weight: 600;">${formData.previousRefusals === 'yes' ? '⚠️ YES' : '✓ No'}</td>
-                </tr>
-                <tr>
-                  <td style="padding: 6px 0; color: #888; font-size: 13px;">Terrorism Involvement</td>
-                  <td style="padding: 6px 0; color: ${formData.terrorismInvolvement === 'yes' ? '#ef4444' : '#22c55e'}; font-weight: 600;">${formData.terrorismInvolvement === 'yes' ? '⚠️ YES' : '✓ No'}</td>
-                </tr>
-              </table>
-            </div>
+                <!-- Applicant -->
+                <div style="background: #f4f7fb; border-radius: 10px; padding: 16px 20px; margin-bottom: 16px;">
+                  <div style="color: #5b7fa6; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">Applicant</div>
+                  <table style="width: 100%; border-collapse: collapse;">
+                    <tr><td style="padding: 4px 0; color: #5b7fa6; font-size: 13px; width: 160px;">Name</td><td style="padding: 4px 0; color: #0f172a; font-weight: 600;">${applicantName || 'N/A'}</td></tr>
+                    <tr><td style="padding: 4px 0; color: #5b7fa6; font-size: 13px;">Email</td><td style="padding: 4px 0;"><a href="mailto:${formData.email}" style="color: #1d70b8;">${formData.email}</a></td></tr>
+                    <tr><td style="padding: 4px 0; color: #5b7fa6; font-size: 13px;">Phone</td><td style="padding: 4px 0; color: #334155;">${formData.phone || 'N/A'}</td></tr>
+                    <tr><td style="padding: 4px 0; color: #5b7fa6; font-size: 13px;">Date of Birth</td><td style="padding: 4px 0; color: #334155;">${formData.dateOfBirth || 'N/A'}</td></tr>
+                    <tr><td style="padding: 4px 0; color: #5b7fa6; font-size: 13px;">Gender</td><td style="padding: 4px 0; color: #334155;">${formData.gender || 'N/A'}</td></tr>
+                    <tr><td style="padding: 4px 0; color: #5b7fa6; font-size: 13px;">Nationality</td><td style="padding: 4px 0; color: #334155;">${formData.nationality || 'N/A'}</td></tr>
+                    <tr><td style="padding: 4px 0; color: #5b7fa6; font-size: 13px;">Birth Country</td><td style="padding: 4px 0; color: #334155;">${formData.birthCountry || 'N/A'}</td></tr>
+                  </table>
+                </div>
 
-            <!-- Address -->
-            <div style="background-color: #1f2833; border-radius: 12px; padding: 20px; margin-bottom: 20px;">
-              <h3 style="color: #ffffff; margin: 0 0 12px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Address</h3>
-              <p style="color: #c5c6c7; margin: 0; line-height: 1.6;">
-                ${formData.addressLine1 || ''}${formData.addressLine2 ? '<br>' + formData.addressLine2 : ''}<br>
-                ${formData.city || ''}${formData.state ? ', ' + formData.state : ''} ${formData.postcode || ''}<br>
-                ${formData.country || ''}
-              </p>
-            </div>
+                <!-- Passport -->
+                <div style="background: #f4f7fb; border-radius: 10px; padding: 16px 20px; margin-bottom: 16px;">
+                  <div style="color: #5b7fa6; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">Passport</div>
+                  <table style="width: 100%; border-collapse: collapse;">
+                    <tr><td style="padding: 4px 0; color: #5b7fa6; font-size: 13px; width: 160px;">Country</td><td style="padding: 4px 0; color: #334155;">${formData.passportCountry || 'N/A'}</td></tr>
+                    <tr><td style="padding: 4px 0; color: #5b7fa6; font-size: 13px;">Number</td><td style="padding: 4px 0; color: #0f172a; font-weight: 600; font-family: monospace;">${formData.passportNumber || 'N/A'}</td></tr>
+                    <tr><td style="padding: 4px 0; color: #5b7fa6; font-size: 13px;">Issue Date</td><td style="padding: 4px 0; color: #334155;">${formData.issueDate || 'N/A'}</td></tr>
+                    <tr><td style="padding: 4px 0; color: #5b7fa6; font-size: 13px;">Expiry Date</td><td style="padding: 4px 0; color: #334155;">${formData.expiryDate || 'N/A'}</td></tr>
+                    <tr><td style="padding: 4px 0; color: #5b7fa6; font-size: 13px;">Issuing Authority</td><td style="padding: 4px 0; color: #334155;">${formData.issuingAuthority || 'N/A'}</td></tr>
+                  </table>
+                </div>
 
-            <!-- Emergency Contact -->
-            ${formData.emergencyName ? `
-            <div style="background-color: #1f2833; border-radius: 12px; padding: 20px; margin-bottom: 20px;">
-              <h3 style="color: #ffffff; margin: 0 0 12px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Emergency Contact</h3>
-              <table style="width: 100%; border-collapse: collapse;">
-                <tr>
-                  <td style="padding: 6px 0; color: #888; font-size: 13px; width: 160px;">Name</td>
-                  <td style="padding: 6px 0; color: #c5c6c7;">${formData.emergencyName}</td>
-                </tr>
-                <tr>
-                  <td style="padding: 6px 0; color: #888; font-size: 13px;">Relationship</td>
-                  <td style="padding: 6px 0; color: #c5c6c7;">${formData.emergencyRelationship || 'N/A'}</td>
-                </tr>
-                <tr>
-                  <td style="padding: 6px 0; color: #888; font-size: 13px;">Phone</td>
-                  <td style="padding: 6px 0; color: #c5c6c7;">${formData.emergencyPhone || 'N/A'}</td>
-                </tr>
-              </table>
-            </div>
-            ` : ''}
+                <!-- Background -->
+                <div style="background: #f4f7fb; border-radius: 10px; padding: 16px 20px; margin-bottom: 16px;">
+                  <div style="color: #5b7fa6; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">Background Checks</div>
+                  <table style="width: 100%; border-collapse: collapse;">
+                    <tr><td style="padding: 4px 0; color: #5b7fa6; font-size: 13px; width: 160px;">Criminal Convictions</td><td style="padding: 4px 0; color: ${formData.criminalConvictions === 'yes' ? '#dc2626' : '#16a34a'}; font-weight: 600;">${formData.criminalConvictions === 'yes' ? '⚠ YES' : '✓ No'}</td></tr>
+                    <tr><td style="padding: 4px 0; color: #5b7fa6; font-size: 13px;">Immigration Breaches</td><td style="padding: 4px 0; color: ${formData.immigrationBreaches === 'yes' ? '#dc2626' : '#16a34a'}; font-weight: 600;">${formData.immigrationBreaches === 'yes' ? '⚠ YES' : '✓ No'}</td></tr>
+                    <tr><td style="padding: 4px 0; color: #5b7fa6; font-size: 13px;">Previous Refusals</td><td style="padding: 4px 0; color: ${formData.previousRefusals === 'yes' ? '#dc2626' : '#16a34a'}; font-weight: 600;">${formData.previousRefusals === 'yes' ? '⚠ YES' : '✓ No'}</td></tr>
+                    <tr><td style="padding: 4px 0; color: #5b7fa6; font-size: 13px;">Terrorism Involvement</td><td style="padding: 4px 0; color: ${formData.terrorismInvolvement === 'yes' ? '#dc2626' : '#16a34a'}; font-weight: 600;">${formData.terrorismInvolvement === 'yes' ? '⚠ YES' : '✓ No'}</td></tr>
+                  </table>
+                </div>
 
-            <!-- Photos -->
-            <div style="background-color: #1f2833; border-radius: 12px; padding: 20px; margin-bottom: 20px;">
-              <h3 style="color: #ffffff; margin: 0 0 12px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Photos</h3>
-              <table style="width: 100%; border-collapse: collapse;">
-                <tr>
-                  <td style="padding: 6px 0; color: #888; font-size: 13px; width: 160px;">Selfie</td>
-                  <td style="padding: 6px 0;">${photoSignedUrls.selfie ? '<a href="' + photoSignedUrls.selfie + '" style="color: #66fcf1;">View Photo (7-day link)</a>' : '<span style="color: #ef4444;">Not uploaded</span>'}</td>
-                </tr>
-                <tr>
-                  <td style="padding: 6px 0; color: #888; font-size: 13px;">Passport Scan</td>
-                  <td style="padding: 6px 0;">${photoSignedUrls.passport ? '<a href="' + photoSignedUrls.passport + '" style="color: #66fcf1;">View Photo (7-day link)</a>' : '<span style="color: #ef4444;">Not uploaded</span>'}</td>
-                </tr>
-              </table>
-            </div>
+                <!-- Address -->
+                <div style="background: #f4f7fb; border-radius: 10px; padding: 16px 20px; margin-bottom: 16px;">
+                  <div style="color: #5b7fa6; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">Address</div>
+                  <p style="color: #334155; margin: 0; line-height: 1.7; font-size: 13px;">
+                    ${formData.addressLine1 || ''}${formData.addressLine2 ? '<br>' + formData.addressLine2 : ''}<br>
+                    ${formData.city || ''}${formData.state ? ', ' + formData.state : ''} ${formData.postcode || ''}<br>
+                    ${formData.country || ''}
+                  </p>
+                </div>
 
-            <!-- Quick Actions -->
-            <div style="text-align: center; margin-top: 24px;">
-              <a href="mailto:${formData.email}?subject=Re: ETA Application ${referenceNumber}" style="display: inline-block; background-color: #66fcf1; color: #0b0c10; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 14px;">Reply to Applicant</a>
-            </div>
+                ${formData.emergencyName ? `
+                <!-- Emergency Contact -->
+                <div style="background: #f4f7fb; border-radius: 10px; padding: 16px 20px; margin-bottom: 16px;">
+                  <div style="color: #5b7fa6; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">Emergency Contact</div>
+                  <table style="width: 100%; border-collapse: collapse;">
+                    <tr><td style="padding: 4px 0; color: #5b7fa6; font-size: 13px; width: 160px;">Name</td><td style="padding: 4px 0; color: #334155;">${formData.emergencyName}</td></tr>
+                    <tr><td style="padding: 4px 0; color: #5b7fa6; font-size: 13px;">Relationship</td><td style="padding: 4px 0; color: #334155;">${formData.emergencyRelationship || 'N/A'}</td></tr>
+                    <tr><td style="padding: 4px 0; color: #5b7fa6; font-size: 13px;">Phone</td><td style="padding: 4px 0; color: #334155;">${formData.emergencyPhone || 'N/A'}</td></tr>
+                  </table>
+                </div>
+                ` : ''}
 
-            <div style="border-top: 1px solid #1f2833; margin-top: 24px; padding-top: 16px; text-align: center;">
-              <p style="color: #666; font-size: 12px; margin: 0;">UK ETA Service — Admin Notification</p>
+                <!-- Photos -->
+                <div style="background: #f4f7fb; border-radius: 10px; padding: 16px 20px; margin-bottom: 20px;">
+                  <div style="color: #5b7fa6; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">Photos</div>
+                  <table style="width: 100%; border-collapse: collapse;">
+                    <tr><td style="padding: 4px 0; color: #5b7fa6; font-size: 13px; width: 160px;">Selfie</td><td style="padding: 4px 0;">${photoSignedUrls.selfie ? '<a href="' + photoSignedUrls.selfie + '" style="color: #1d70b8;">View Photo (7-day link)</a>' : '<span style="color: #dc2626;">Not uploaded</span>'}</td></tr>
+                    <tr><td style="padding: 4px 0; color: #5b7fa6; font-size: 13px;">Passport Scan</td><td style="padding: 4px 0;">${photoSignedUrls.passport ? '<a href="' + photoSignedUrls.passport + '" style="color: #1d70b8;">View Photo (7-day link)</a>' : '<span style="color: #dc2626;">Not uploaded</span>'}</td></tr>
+                  </table>
+                </div>
+
+                <!-- CTA -->
+                <div style="text-align: center;">
+                  <a href="mailto:${formData.email}?subject=Re: ETA Application ${referenceNumber}" style="display: inline-block; background-color: #1d70b8; color: #ffffff; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 14px;">Reply to Applicant</a>
+                </div>
+
+              </div>
+
+              <!-- Footer -->
+              <div style="background: #eef2f8; padding: 14px 24px; text-align: center; border-top: 1px solid #dde6f0;">
+                <p style="color: #5b7fa6; font-size: 12px; margin: 0;">UK ETA Service — Admin Notification</p>
+              </div>
+
             </div>
           </div>
         `,

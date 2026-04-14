@@ -35,13 +35,18 @@ export function Header() {
     window.location.href = newPath;
   };
 
+  const localizedHref = (href: string) => {
+    if (locale === 'en') return href;
+    return href === '/' ? `/${locale}` : `/${locale}${href}`;
+  };
+
   const navLinks = [
-    { href: '/', label: t('nav.home') },
-    { href: '/apply-for-eta', label: t('nav.apply') },
-    { href: '/status', label: t('nav.status') },
-    { href: '/about', label: t('nav.about') },
-    { href: '/blog', label: t('nav.blog') },
-    { href: '/contact', label: t('nav.contact') },
+    { href: localizedHref('/'), label: t('nav.home') },
+    { href: localizedHref('/apply-for-eta'), label: t('nav.apply') },
+    { href: localizedHref('/status'), label: t('nav.status') },
+    { href: localizedHref('/about'), label: t('nav.about') },
+    { href: localizedHref('/blog'), label: t('nav.blog') },
+    { href: localizedHref('/contact'), label: t('nav.contact') },
   ];
 
   return (
@@ -49,7 +54,7 @@ export function Header() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo / Title */}
-          <Link href="/" className="flex items-center gap-3">
+          <Link href={localizedHref('/')} className="flex items-center gap-3">
             <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-gradient-to-br from-brand-accent to-brand-muted flex items-center justify-center">
               <span className="text-white font-display font-bold text-lg md:text-xl">UK</span>
             </div>
