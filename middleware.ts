@@ -6,6 +6,8 @@ export default createMiddleware({
   defaultLocale: 'en',
   // English has no prefix (/about), other languages get a prefix (/fr/about, /bg/about)
   localePrefix: 'as-needed',
+  // Disable cookie/Accept-Language detection — locale is determined by URL only
+  localeDetection: false,
 });
 
 export const config = {

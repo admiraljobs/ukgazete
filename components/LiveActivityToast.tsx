@@ -44,12 +44,22 @@ function randomActivityIndex() {
 }
 
 export function LiveActivityToast() {
-  const [index, setIndex] = useState(() => randomActivityIndex());
+  const [mounted, setMounted] = useState(false);
+  const [index, setIndex] = useState(0);
   const [visible, setVisible] = useState(true);
-  const [activeCount, setActiveCount] = useState(randomActive());
+  const [activeCount, setActiveCount] = useState(11);
   const [showCount, setShowCount] = useState(false);
 
+  // Initialise random values only on the client to avoid SSR/client mismatch
   useEffect(() => {
+    setIndex(randomActivityIndex());
+    setActiveCount(randomActive());
+    setMounted(true);
+  }, []);
+
+  // Rotate the toast every 4.5 s
+  useEffect(() => {
+    if (!mounted) return;
     const interval = setInterval(() => {
       setVisible(false);
       setTimeout(() => {
@@ -61,7 +71,9 @@ export function LiveActivityToast() {
     }, 4500);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [mounted]);
+
+  if (!mounted) return null;
 
   const activity = activities[index];
 
