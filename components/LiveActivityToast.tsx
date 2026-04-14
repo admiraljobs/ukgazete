@@ -4,42 +4,58 @@ import { useEffect, useState } from 'react';
 import { CheckCircle, Users } from 'lucide-react';
 
 const activities = [
-  { type: 'apply',    name: 'Ahmed',    country: 'Qatar' },
-  { type: 'apply',    name: 'Fatima',   country: 'UAE' },
-  { type: 'approved', name: 'Pierre',   country: 'France' },
-  { type: 'apply',    name: 'Mehmet',   country: 'Turkey' },
-  { type: 'approved', name: 'Sofia',    country: 'Bulgaria' },
-  { type: 'apply',    name: 'Yusuf',    country: 'Saudi Arabia' },
-  { type: 'approved', name: 'Layla',    country: 'Kuwait' },
-  { type: 'apply',    name: 'Marco',    country: 'Italy' },
-  { type: 'approved', name: 'Hana',     country: 'Bahrain' },
-  { type: 'apply',    name: 'Elif',     country: 'Turkey' },
-  { type: 'approved', name: 'Khalid',   country: 'Oman' },
-  { type: 'apply',    name: 'Céline',   country: 'France' },
+  { type: 'apply',    name: 'Ahmed',     country: 'Qatar' },
+  { type: 'apply',    name: 'Fatima',    country: 'UAE' },
+  { type: 'approved', name: 'Pierre',    country: 'France' },
+  { type: 'apply',    name: 'Mehmet',    country: 'Turkey' },
+  { type: 'approved', name: 'Sofia',     country: 'Bulgaria' },
+  { type: 'apply',    name: 'Yusuf',     country: 'Saudi Arabia' },
+  { type: 'approved', name: 'Layla',     country: 'Kuwait' },
+  { type: 'apply',    name: 'Marco',     country: 'Italy' },
+  { type: 'approved', name: 'Hana',      country: 'Bahrain' },
+  { type: 'apply',    name: 'Elif',      country: 'Turkey' },
+  { type: 'approved', name: 'Khalid',    country: 'Oman' },
+  { type: 'apply',    name: 'Céline',    country: 'France' },
+  { type: 'approved', name: 'Rania',     country: 'Jordan' },
+  { type: 'apply',    name: 'Tariq',     country: 'UAE' },
+  { type: 'approved', name: 'Nadia',     country: 'Morocco' },
+  { type: 'apply',    name: 'Luca',      country: 'Italy' },
+  { type: 'approved', name: 'Sara',      country: 'Qatar' },
+  { type: 'apply',    name: 'Karim',     country: 'Egypt' },
+  { type: 'approved', name: 'Ingrid',    country: 'Sweden' },
+  { type: 'apply',    name: 'Dimitri',   country: 'Bulgaria' },
+  { type: 'approved', name: 'Aisha',     country: 'Saudi Arabia' },
+  { type: 'apply',    name: 'Thomas',    country: 'France' },
+  { type: 'approved', name: 'Zeynep',    country: 'Turkey' },
+  { type: 'apply',    name: 'Omar',      country: 'Kuwait' },
 ];
 
-// Random number of active users between 12-31
 function randomActive() {
-  return Math.floor(Math.random() * 20) + 12;
+  return Math.floor(Math.random() * 24) + 11;
+}
+
+let lastIndex = -1;
+function randomActivityIndex() {
+  let next;
+  do { next = Math.floor(Math.random() * activities.length); }
+  while (next === lastIndex);
+  lastIndex = next;
+  return next;
 }
 
 export function LiveActivityToast() {
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(() => randomActivityIndex());
   const [visible, setVisible] = useState(true);
   const [activeCount, setActiveCount] = useState(randomActive());
   const [showCount, setShowCount] = useState(false);
 
   useEffect(() => {
-    // Alternate between activity message and active user count
     const interval = setInterval(() => {
-      // Fade out
       setVisible(false);
-
       setTimeout(() => {
         setShowCount((prev) => !prev);
-        setIndex((i) => (i + 1) % activities.length);
+        setIndex(randomActivityIndex());
         setActiveCount(randomActive());
-        // Fade in
         setVisible(true);
       }, 400);
     }, 4500);
