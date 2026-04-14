@@ -1,0 +1,553 @@
+{
+  "common": {
+    "next": "Continuer",
+    "back": "Retour",
+    "submit": "Soumettre la demande",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "required": "Obligatoire",
+    "optional": "Facultatif",
+    "loading": "Chargement...",
+    "error": "Une erreur s'est produite",
+    "success": "Succès",
+    "yes": "Oui",
+    "no": "Non",
+    "select": "Sélectionnez une option",
+    "upload": "Téléverser",
+    "remove": "Supprimer",
+    "preview": "Aperçu",
+    "close": "Fermer"
+  },
+  "header": {
+    "title": "Demande d'AVE Royaume-Uni",
+    "subtitle": "Service d'Autorisation de Voyage Électronique",
+    "securityBadge": "Cryptage 256 bits",
+    "support": "Besoin d'aide?",
+    "nav": {
+      "home": "Accueil",
+      "apply": "Postuler",
+      "status": "Suivi de demande",
+      "about": "À propos",
+      "blog": "Blog",
+      "contact": "Contact"
+    }
+  },
+  "progress": {
+    "step": "Étape {current} sur {total}",
+    "passport": "Passeport",
+    "personal": "Personnel",
+    "contact": "Contact",
+    "photo": "Photo",
+    "background": "Antécédents",
+    "address": "Adresse",
+    "emergency": "Urgence",
+    "review": "Révision et paiement",
+    "phase": {
+      "identity": "Identité",
+      "contact": "Contact & Photo",
+      "security": "Sécurité & Adresse",
+      "review": "Révision & Paiement"
+    },
+    "phaseOf": "Phase {current} sur {total}",
+    "phaseStep": "Étape {current} sur {total}",
+    "stepDetail": "Étape {current} sur {total} — {step}"
+  },
+  "passport": {
+    "title": "Détails du passeport",
+    "description": "Entrez les informations exactement comme sur votre passeport.",
+    "country": "Pays d'émission",
+    "countryPlaceholder": "Sélectionnez le pays",
+    "number": "Numéro de passeport",
+    "numberPlaceholder": "Entrez votre numéro",
+    "numberHelp": "Sur la page d'information",
+    "issueDate": "Date d'émission",
+    "expiryDate": "Date d'expiration",
+    "expiryHelp": "Valide au moins 6 mois",
+    "authority": "Autorité émettrice",
+    "authorityPlaceholder": "ex., Préfecture",
+    "photo": "Page photo du passeport",
+    "photoDescription": "Photo claire de la page d'information",
+    "photoRequirements": "Image claire, texte lisible",
+    "uploadButton": "Cliquez ou glissez-déposez",
+    "uploadFormats": "PNG, JPG ou PDF (max. 5 Mo)",
+    "errors": {
+      "countryRequired": "Sélectionnez le pays",
+      "numberRequired": "Numéro requis",
+      "numberInvalid": "Numéro invalide",
+      "issueDateRequired": "Date requise",
+      "issueDateFuture": "Date invalide",
+      "expiryRequired": "Date requise",
+      "expiryPast": "Passeport expiré",
+      "expiryTooSoon": "Validité insuffisante",
+      "authorityRequired": "Autorité requise",
+      "photoRequired": "Photo requise"
+    }
+  },
+  "personal": {
+    "title": "Informations personnelles",
+    "description": "Comme sur votre passeport.",
+    "firstName": "Prénom(s)",
+    "firstNamePlaceholder": "Sur le passeport",
+    "lastName": "Nom de famille",
+    "lastNamePlaceholder": "Sur le passeport",
+    "dateOfBirth": "Date de naissance",
+    "gender": "Genre",
+    "genderMale": "Masculin",
+    "genderFemale": "Féminin",
+    "genderOther": "Autre",
+    "nationality": "Nationalité",
+    "nationalityPlaceholder": "Sélectionnez",
+    "birthCountry": "Pays de naissance",
+    "birthCountryPlaceholder": "Sélectionnez",
+    "errors": {
+      "firstNameRequired": "Prénom requis",
+      "lastNameRequired": "Nom requis",
+      "dobRequired": "Date requise",
+      "dobFuture": "Date invalide",
+      "genderRequired": "Genre requis",
+      "nationalityRequired": "Nationalité requise",
+      "birthCountryRequired": "Pays requis"
+    }
+  },
+  "contact": {
+    "title": "Coordonnées",
+    "description": "La décision AVE sera envoyée par e-mail.",
+    "email": "Adresse e-mail",
+    "emailPlaceholder": "votre@email.com",
+    "emailHelp": "Décision envoyée ici",
+    "confirmEmail": "Confirmez l'e-mail",
+    "confirmEmailPlaceholder": "Saisissez à nouveau",
+    "phone": "Téléphone portable",
+    "phonePlaceholder": "Votre numéro",
+    "phoneHelp": "Avec indicatif (+33)",
+    "errors": {
+      "emailRequired": "E-mail requis",
+      "emailInvalid": "E-mail invalide",
+      "emailMismatch": "E-mails différents",
+      "phoneRequired": "Téléphone requis",
+      "phoneInvalid": "Numéro invalide"
+    }
+  },
+  "photo": {
+    "title": "Photo d'identité",
+    "description": "Photo claire de votre visage.",
+    "selfie": "Photo du visage",
+    "selfieDescription": "Comparée au passeport",
+    "requirements": "Exigences",
+    "requirement1": "Visage visible, face caméra",
+    "requirement2": "Fond uni, bon éclairage",
+    "requirement3": "Sans lunettes ni chapeau",
+    "requirement4": "Photo récente (6 mois)",
+    "takePhoto": "Prendre photo",
+    "uploadPhoto": "Téléverser",
+    "retake": "Reprendre",
+    "errors": {
+      "photoRequired": "Photo requise",
+      "photoTooLarge": "Max 5 Mo",
+      "photoFormat": "JPG ou PNG"
+    }
+  },
+  "background": {
+    "title": "Antécédents",
+    "description": "Répondez honnêtement.",
+    "disclaimer": "Questions des autorités britanniques.",
+    "criminal": {
+      "question": "Condamnation pénale dans un pays?",
+      "help": "Toutes condamnations"
+    },
+    "immigration": {
+      "question": "Infraction à l'immigration?",
+      "help": "Dépassement de visa, etc."
+    },
+    "refusal": {
+      "question": "Refus d'entrée ou expulsion?",
+      "help": "Tout pays"
+    },
+    "terrorism": {
+      "question": "Activités terroristes ou extrémistes?",
+      "help": "Participation ou soutien"
+    },
+    "warning": "Fausses informations = poursuites.",
+    "errors": {
+      "criminalRequired": "Réponse requise",
+      "immigrationRequired": "Réponse requise",
+      "refusalRequired": "Réponse requise",
+      "terrorismRequired": "Réponse requise"
+    }
+  },
+  "address": {
+    "title": "Adresse",
+    "description": "Résidence actuelle.",
+    "line1": "Adresse ligne 1",
+    "line1Placeholder": "Rue, bâtiment",
+    "line2": "Adresse ligne 2",
+    "line2Placeholder": "Appartement (facultatif)",
+    "city": "Ville",
+    "cityPlaceholder": "Votre ville",
+    "state": "Région",
+    "statePlaceholder": "Votre région",
+    "postcode": "Code postal",
+    "postcodePlaceholder": "Code postal",
+    "country": "Pays de résidence",
+    "countryPlaceholder": "Sélectionnez",
+    "errors": {
+      "line1Required": "Adresse requise",
+      "cityRequired": "Ville requise",
+      "postcodeRequired": "Code postal requis",
+      "countryRequired": "Pays requis"
+    }
+  },
+  "emergency": {
+    "title": "Contact d'urgence",
+    "description": "Facultatif mais recommandé.",
+    "name": "Nom du contact",
+    "namePlaceholder": "Nom complet",
+    "relationship": "Relation",
+    "relationshipPlaceholder": "ex., Conjoint",
+    "phone": "Téléphone",
+    "phonePlaceholder": "Avec indicatif",
+    "skip": "Passer"
+  },
+  "review": {
+    "title": "Révision et paiement",
+    "description": "Vérifiez vos informations.",
+    "labels": {
+      "issuingCountry": "Pays",
+      "passportNumber": "Numéro de passeport",
+      "issueDate": "Date de délivrance",
+      "expiryDate": "Date d'expiration",
+      "issuingAuthority": "Autorité de délivrance",
+      "fullName": "Nom complet",
+      "dateOfBirth": "Date de naissance",
+      "gender": "Sexe",
+      "nationality": "Nationalité",
+      "birthCountry": "Pays de naissance",
+      "email": "E-mail",
+      "phone": "Téléphone",
+      "address": "Adresse",
+      "city": "Ville",
+      "postcode": "Code postal",
+      "residenceCountry": "Pays",
+      "criminalConvictions": "Condamnations pénales",
+      "immigrationBreaches": "Infractions d'immigration",
+      "previousRefusals": "Refus antérieurs",
+      "terrorismInvolvement": "Implication dans le terrorisme",
+      "emergencyName": "Nom",
+      "relationship": "Relation",
+      "emergencyPhone": "Téléphone",
+      "photoUploaded": "Photo téléchargée",
+      "noPhoto": "Aucune photo téléchargée"
+    },
+    "sections": {
+      "passport": "Passeport",
+      "personal": "Personnel",
+      "contact": "Contact",
+      "photo": "Photo",
+      "background": "Antécédents",
+      "address": "Adresse",
+      "emergency": "Urgence"
+    },
+    "edit": "Modifier",
+    "notProvided": "Non fourni",
+    "consent": {
+      "title": "Déclarations",
+      "accuracy": "Je confirme l'exactitude des informations.",
+      "submit": "Je consens à la soumission.",
+      "terms": "J'accepte les conditions.",
+      "dataProcessing": "J'accepte le traitement des données."
+    },
+    "errors": {
+      "accuracyRequired": "Confirmation requise",
+      "submitRequired": "Consentement requis",
+      "termsRequired": "Acceptation requise",
+      "dataRequired": "Acceptation requise"
+    }
+  },
+  "payment": {
+    "title": "Paiement",
+    "description": "Complétez le paiement.",
+    "serviceFee": "Frais de service",
+    "processingFee": "Frais de traitement",
+    "total": "Total",
+    "secure": "Paiement sécurisé Stripe",
+    "methods": "Apple Pay, Google Pay, cartes",
+    "processing": "Traitement...",
+    "success": "Paiement réussi!",
+    "error": "Échec. Réessayez.",
+    "submit": "Payer et soumettre"
+  },
+  "confirmation": {
+    "title": "Demande soumise!",
+    "description": "Demande reçue avec succès.",
+    "reference": "Numéro de référence",
+    "referenceHelp": "Conservez ce numéro",
+    "email": "Confirmation envoyée à:",
+    "nextSteps": "Prochaines étapes",
+    "step1": "Examen et soumission",
+    "step2": "Mises à jour par e-mail",
+    "step3": "Décision sous 3 jours",
+    "status": "Vérifier le statut",
+    "newApplication": "Nouvelle demande"
+  },
+  "countries": {
+    "GB": "Royaume-Uni",
+    "US": "États-Unis",
+    "TR": "Turquie",
+    "DE": "Allemagne",
+    "FR": "France",
+    "IT": "Italie",
+    "ES": "Espagne",
+    "NL": "Pays-Bas",
+    "BE": "Belgique",
+    "AT": "Autriche",
+    "CH": "Suisse",
+    "AE": "Émirats Arabes Unis",
+    "SA": "Arabie Saoudite",
+    "QA": "Qatar",
+    "KW": "Koweït",
+    "BH": "Bahreïn",
+    "OM": "Oman",
+    "EG": "Égypte",
+    "JO": "Jordanie",
+    "LB": "Liban",
+    "IN": "Inde",
+    "PK": "Pakistan",
+    "BD": "Bangladesh",
+    "CN": "Chine",
+    "JP": "Japon",
+    "KR": "Corée du Sud",
+    "AU": "Australie",
+    "NZ": "Nouvelle-Zélande",
+    "CA": "Canada",
+    "MX": "Mexique",
+    "BR": "Brésil",
+    "AR": "Argentine",
+    "ZA": "Afrique du Sud",
+    "NG": "Nigeria",
+    "KE": "Kenya",
+    "OTHER": "Autre"
+  },
+  "validation": {
+    "required": "Champ requis",
+    "invalidEmail": "E-mail invalide",
+    "invalidPhone": "Téléphone invalide",
+    "invalidDate": "Date invalide",
+    "fileTooLarge": "Fichier trop volumineux",
+    "invalidFileType": "Type invalide"
+  },
+  "footer": {
+    "privacy": "Confidentialité",
+    "terms": "Conditions",
+    "contact": "Contact",
+    "copyright": "© {year} Service AVE UK. Tous droits réservés.",
+    "disclaimer": "Service tiers non affilié au gouvernement britannique.",
+    "sslSecured": "SSL sécurisé",
+    "gdprCompliant": "Conforme RGPD"
+  },
+  "statusPage": {
+    "title": "Vérifier le statut de la demande",
+    "subtitle": "Entrez votre numéro de référence et votre e-mail pour vérifier le statut de votre demande d'AVE.",
+    "refLabel": "Numéro de référence",
+    "refHelp": "Figurant dans votre e-mail de confirmation",
+    "emailLabel": "Adresse e-mail",
+    "emailHelp": "L'e-mail utilisé pour votre demande",
+    "checkBtn": "Vérifier le statut",
+    "checkingBtn": "Vérification...",
+    "notFound": "Demande introuvable. Veuillez vérifier votre numéro de référence et votre adresse e-mail.",
+    "status": {
+      "draft":     { "label": "Brouillon",                       "desc": "Votre demande a été commencée mais le paiement est en attente." },
+      "paid":      { "label": "Payé — En attente de soumission", "desc": "Paiement reçu. Notre équipe va examiner et soumettre votre demande." },
+      "submitted": { "label": "Soumis — En cours d'examen",      "desc": "Votre demande a été soumise aux autorités britanniques et est en cours de traitement." },
+      "approved":  { "label": "Approuvé",                        "desc": "Félicitations ! Votre AVE UK a été approuvée. Consultez votre e-mail pour les détails." },
+      "refused":   { "label": "Refusé",                          "desc": "Malheureusement, votre demande n'a pas été approuvée. Consultez votre e-mail pour plus d'informations." }
+    },
+    "details": {
+      "reference":   "Numéro de référence",
+      "applicant":   "Demandeur",
+      "submitted":   "Soumis le",
+      "lastUpdated": "Dernière mise à jour"
+    },
+    "checkAnother":   "Vérifier une autre demande",
+    "contactSupport": "Contacter le support",
+    "helpText":       "Vous ne trouvez pas votre numéro de référence ?",
+    "helpLink":       "Contactez notre équipe support"
+  },
+  "blog": {
+    "title": "Blog & Guides",
+    "subtitle": "Guides utiles et dernières mises à jour sur les exigences de l'AVE UK.",
+    "readMore": "Lire la suite",
+    "backToBlog": "← Retour au blog",
+    "publishedOn": "Publié le",
+    "minRead": "min de lecture",
+    "allArticles": "Tous les articles",
+    "guides": "Guides",
+    "faq": "FAQ"
+  },
+  "home": {
+    "hero": {
+      "badge": "Service AVE rapide et sécurisé",
+      "title": "Obtenez votre AVE UK",
+      "titleAccent": "En quelques minutes",
+      "subtitle": "Demandez votre Autorisation de Voyage Électronique rapidement et en toute sécurité. Nous gérons les démarches, vous vous concentrez sur votre voyage.",
+      "applyBtn": "Commencer la demande",
+      "howBtn": "Comment ça marche"
+    },
+    "trust": {
+      "ssl": "SSL 256 bits",
+      "gdpr": "Conforme RGPD",
+      "applications": "10 000+ demandes",
+      "rating": "Note 4,9/5"
+    },
+    "features": {
+      "title": "Pourquoi choisir notre service ?",
+      "subtitle": "Nous rendons la demande d'AVE UK simple, rapide et sans stress.",
+      "quick": { "title": "Demande rapide", "desc": "Complétez votre demande d'AVE en moins de 10 minutes grâce à notre formulaire simplifié." },
+      "secure": { "title": "Sécurisé et chiffré", "desc": "Le chiffrement SSL 256 bits protège vos données personnelles tout au long du processus." },
+      "multilang": { "title": "Multilingue", "desc": "Postulez dans votre langue — français, anglais, turc, arabe ou bulgare." },
+      "support": { "title": "Assistance experte", "desc": "Notre équipe examine chaque demande et gère la soumission en votre nom." },
+      "docCheck": { "title": "Vérification des documents", "desc": "Nous vérifions vos documents avant soumission pour éviter tout rejet." },
+      "payment": { "title": "Paiement flexible", "desc": "Payez en toute sécurité par carte, Apple Pay ou Google Pay." }
+    },
+    "howItWorks": {
+      "title": "Comment ça marche",
+      "subtitle": "Quatre étapes simples pour obtenir votre AVE UK.",
+      "step1": { "title": "Remplir le formulaire", "desc": "Complétez notre formulaire en ligne simple avec vos informations" },
+      "step2": { "title": "Téléverser les documents", "desc": "Fournissez la photo de passeport et un selfie pour vérification" },
+      "step3": { "title": "Payer en sécurité", "desc": "Paiement par carte, Apple Pay ou Google Pay" },
+      "step4": { "title": "Nous soumettons", "desc": "Nos experts examinent et soumettent aux autorités britanniques" }
+    },
+    "reviews": {
+      "badge": "4,9 sur 5 — plus de 2 400 avis vérifiés",
+      "title": "La confiance de voyageurs du monde entier",
+      "subtitle": "De vrais avis de vrais clients qui ont utilisé notre service."
+    },
+    "stats": {
+      "applicationsLabel": "Demandes traitées",
+      "approvalLabel": "Taux d'approbation",
+      "timeLabel": "Délai moyen d'approbation",
+      "ratingLabel": "Note clients"
+    },
+    "pricing": {
+      "title": "Tarification simple et transparente",
+      "subtitle": "Un seul prix, tout inclus. Aucuns frais cachés.",
+      "packageName": "Forfait AVE UK",
+      "feature1": "Assistance complète à la demande",
+      "feature2": "Vérification des documents",
+      "feature3": "Révision experte avant soumission",
+      "feature4": "Suivi de statut et mises à jour",
+      "feature5": "Assistance par e-mail",
+      "feature6": "Remboursement si rejet dû à notre erreur",
+      "cta": "Commencer la demande maintenant",
+      "note": "La taxe gouvernementale AVE (£10) est payée séparément lors du traitement officiel"
+    },
+    "faq": {
+      "title": "Questions fréquentes",
+      "subtitle": "Tout ce que vous devez savoir sur l'AVE UK.",
+      "q1": { "q": "Qu'est-ce qu'un AVE UK ?", "a": "L'Autorisation de Voyage Électronique (AVE) du Royaume-Uni est un permis de voyage numérique requis pour les visiteurs exempts de visa. Il est lié à votre passeport électroniquement et doit être obtenu avant le voyage." },
+      "q2": { "q": "Qui a besoin d'un AVE UK ?", "a": "Les ressortissants de pays n'ayant pas besoin de visa pour visiter le Royaume-Uni devront obtenir un AVE. Cela inclut les citoyens des pays du CCG et s'étendra aux citoyens européens en 2025." },
+      "q3": { "q": "Quelle est la durée de validité de l'AVE ?", "a": "L'AVE UK est valable 2 ans ou jusqu'à l'expiration de votre passeport. Il permet plusieurs visites de 6 mois maximum pour le tourisme, les affaires ou le transit." },
+      "q4": { "q": "Combien de temps prend l'approbation ?", "a": "La plupart des demandes sont traitées en 3 jours ouvrables. Certaines peuvent prendre plus longtemps si des vérifications supplémentaires sont requises." },
+      "q5": { "q": "Que comprend votre frais de service ?", "a": "Nos frais couvrent la révision, la vérification des documents, la soumission, le suivi du statut et le support client. La taxe gouvernementale est séparée." },
+      "q6": { "q": "Mes données sont-elles sécurisées ?", "a": "Absolument. Nous utilisons le chiffrement SSL 256 bits, respectons le RGPD britannique et ne partageons jamais vos données avec des tiers." }
+    },
+    "cta": {
+      "title": "Prêt à postuler ?",
+      "subtitle": "Commencez votre demande d'AVE UK maintenant et voyagez sereinement.",
+      "button": "Commencer la demande"
+    }
+  },
+  "about": {
+    "hero": {
+      "title": "À propos du Service AVE UK",
+      "subtitle": "Une équipe dédiée qui aide les voyageurs à naviguer dans le système d'Autorisation de Voyage Électronique du Royaume-Uni."
+    },
+    "stats": {
+      "applications": "Demandes traitées",
+      "approvalRate": "Taux d'approbation",
+      "rating": "Note clients",
+      "processing": "Délai moyen de traitement"
+    },
+    "story": {
+      "title": "Notre histoire",
+      "p1": "Lorsque le Royaume-Uni a annoncé sa nouvelle obligation d'AVE, nous avons vu une opportunité d'aider. Beaucoup de voyageurs trouvaient le processus officiel déroutant, notamment ceux peu familiers avec les sites gouvernementaux britanniques ou non anglophones.",
+      "p2": "Nous avons créé ce service pour combler ce fossé. Notre équipe combine expertise en immigration et technologie moderne pour offrir une expérience fluide et guidée.",
+      "p3": "Chaque demande est personnellement examinée par notre équipe avant soumission, garantissant exactitude et exhaustivité. Nous détectons les problèmes potentiels avant qu'ils ne deviennent des obstacles."
+    },
+    "values": {
+      "title": "Nos valeurs",
+      "subtitle": "Ce qui nous anime chaque jour.",
+      "security": { "title": "Sécurité avant tout", "desc": "Vos données sont protégées par un chiffrement de niveau bancaire. Nous ne partageons jamais vos informations." },
+      "customer": { "title": "Centré sur le client", "desc": "Nous sommes là pour faciliter vos voyages. Notre équipe examine personnellement chaque demande." },
+      "excellence": { "title": "Excellence", "desc": "Nous visons les plus hauts standards, de notre technologie à notre service client." },
+      "accessibility": { "title": "Accessibilité", "desc": "Notre service est disponible en plusieurs langues pour servir les voyageurs du monde entier." }
+    },
+    "whatWeDo": {
+      "title": "Ce que nous faisons",
+      "item1": "Vous guider à chaque étape du processus de demande d'AVE",
+      "item2": "Vérifier l'exactitude et l'exhaustivité de vos documents",
+      "item3": "Soumettre votre demande aux autorités britanniques en votre nom",
+      "item4": "Suivre le statut de votre demande et vous tenir informé",
+      "item5": "Fournir un support en cas de problème",
+      "item6": "Rembourser si votre demande est rejetée en raison de notre erreur",
+      "noteTitle": "Note importante",
+      "noteText": "Nous sommes un service indépendant, non affilié au gouvernement britannique. Nous fournissons une assistance pour les demandes d'AVE moyennant des frais de service."
+    },
+    "cta": {
+      "title": "Prêt à commencer ?",
+      "subtitle": "Laissez-nous vous aider avec votre demande d'AVE UK dès aujourd'hui.",
+      "button": "Commencer la demande"
+    }
+  },
+  "contactPage": {
+    "title": "Contactez-nous",
+    "subtitle": "Une question ou besoin d'aide pour votre demande ? Nous sommes là pour vous aider.",
+    "emailCard": {
+      "title": "Envoyez-nous un e-mail",
+      "subtitle": "Pour les demandes générales",
+      "address": "support@ukgazete.com"
+    },
+    "responseCard": {
+      "title": "Délai de réponse",
+      "desc": "Nous répondons généralement dans les 24 heures en jours ouvrables."
+    },
+    "statusCard": {
+      "title": "Vérifier le statut",
+      "desc": "Suivez votre demande en ligne",
+      "link": "Vérifier le statut →"
+    },
+    "form": {
+      "name": "Votre nom",
+      "namePlaceholder": "Jean Dupont",
+      "email": "Adresse e-mail",
+      "emailPlaceholder": "jean@exemple.com",
+      "reference": "Numéro de référence",
+      "referenceOptional": "(si applicable)",
+      "referencePlaceholder": "ETA-XXXXXX-XXXX",
+      "subject": "Sujet",
+      "subjectPlaceholder": "Sélectionnez un sujet",
+      "message": "Message",
+      "messagePlaceholder": "Comment pouvons-nous vous aider ?",
+      "send": "Envoyer le message",
+      "sending": "Envoi en cours...",
+      "subjects": {
+        "general": "Demande générale",
+        "status": "Statut de la demande",
+        "payment": "Problème de paiement",
+        "document": "Problème de téléversement",
+        "refund": "Demande de remboursement",
+        "technical": "Support technique",
+        "other": "Autre"
+      }
+    },
+    "success": {
+      "title": "Message envoyé !",
+      "desc": "Merci de nous avoir contactés. Nous vous répondrons dans les 24 heures.",
+      "confirmation": "Une confirmation a été envoyée à votre adresse e-mail.",
+      "sendAnother": "Envoyer un autre message"
+    },
+    "errors": {
+      "turnstile": "Veuillez compléter la vérification de sécurité.",
+      "generic": "Une erreur s'est produite. Veuillez réessayer."
+    }
+  }
+}

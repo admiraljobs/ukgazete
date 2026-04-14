@@ -1,0 +1,553 @@
+{
+  "common": {
+    "next": "Continue",
+    "back": "Back",
+    "submit": "Submit Application",
+    "save": "Save Progress",
+    "cancel": "Cancel",
+    "required": "Required",
+    "optional": "Optional",
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "success": "Success",
+    "yes": "Yes",
+    "no": "No",
+    "select": "Select an option",
+    "upload": "Upload",
+    "remove": "Remove",
+    "preview": "Preview",
+    "close": "Close"
+  },
+  "header": {
+    "title": "UK ETA Application",
+    "subtitle": "Electronic Travel Authorisation Service",
+    "securityBadge": "256-bit Encrypted",
+    "support": "Need help?",
+    "nav": {
+      "home": "Home",
+      "apply": "Apply Now",
+      "status": "Check Status",
+      "about": "About",
+      "blog": "Blog",
+      "contact": "Contact"
+    }
+  },
+  "progress": {
+    "step": "Step {current} of {total}",
+    "passport": "Passport",
+    "personal": "Personal Details",
+    "contact": "Contact",
+    "photo": "Photo",
+    "background": "Background",
+    "address": "Address",
+    "emergency": "Emergency",
+    "review": "Review & Pay",
+    "phase": {
+      "identity": "Identity",
+      "contact": "Contact & Photo",
+      "security": "Security & Address",
+      "review": "Review & Pay"
+    },
+    "phaseOf": "Phase {current} of {total}",
+    "phaseStep": "Step {current} of {total}",
+    "stepDetail": "Step {current} of {total} — {step}"
+  },
+  "passport": {
+    "title": "Passport Details",
+    "description": "Enter your passport information exactly as it appears on your travel document.",
+    "country": "Passport Issuing Country",
+    "countryPlaceholder": "Select your passport country",
+    "number": "Passport Number",
+    "numberPlaceholder": "Enter your passport number",
+    "numberHelp": "Found on the information page of your passport",
+    "issueDate": "Date of Issue",
+    "expiryDate": "Expiry Date",
+    "expiryHelp": "Passport must be valid for at least 6 months",
+    "authority": "Issuing Authority",
+    "authorityPlaceholder": "e.g., IPS, UKPA, or issuing office name",
+    "photo": "Passport Photo Page",
+    "photoDescription": "Upload a clear photo or scan of your passport's information page",
+    "photoRequirements": "Requirements: Clear image, all text readable, no glare",
+    "uploadButton": "Click to upload or drag and drop",
+    "uploadFormats": "PNG, JPG or PDF (max. 5MB)",
+    "errors": {
+      "countryRequired": "Please select your passport country",
+      "numberRequired": "Passport number is required",
+      "numberInvalid": "Please enter a valid passport number",
+      "issueDateRequired": "Issue date is required",
+      "issueDateFuture": "Issue date cannot be in the future",
+      "expiryRequired": "Expiry date is required",
+      "expiryPast": "Your passport has expired",
+      "expiryTooSoon": "Passport must be valid for at least 6 months",
+      "authorityRequired": "Issuing authority is required",
+      "photoRequired": "Passport photo page is required"
+    }
+  },
+  "personal": {
+    "title": "Personal Details",
+    "description": "Enter your details exactly as they appear on your passport.",
+    "firstName": "First Name(s)",
+    "firstNamePlaceholder": "As shown on passport",
+    "lastName": "Last Name / Family Name",
+    "lastNamePlaceholder": "As shown on passport",
+    "dateOfBirth": "Date of Birth",
+    "gender": "Gender",
+    "genderMale": "Male",
+    "genderFemale": "Female",
+    "genderOther": "Other / Unspecified",
+    "nationality": "Nationality",
+    "nationalityPlaceholder": "Select your nationality",
+    "birthCountry": "Country of Birth",
+    "birthCountryPlaceholder": "Select your country of birth",
+    "errors": {
+      "firstNameRequired": "First name is required",
+      "lastNameRequired": "Last name is required",
+      "dobRequired": "Date of birth is required",
+      "dobFuture": "Date of birth cannot be in the future",
+      "genderRequired": "Please select your gender",
+      "nationalityRequired": "Nationality is required",
+      "birthCountryRequired": "Country of birth is required"
+    }
+  },
+  "contact": {
+    "title": "Contact Details",
+    "description": "Your ETA decision will be sent to the email address provided.",
+    "email": "Email Address",
+    "emailPlaceholder": "your.email@example.com",
+    "emailHelp": "You will receive your ETA decision at this address",
+    "confirmEmail": "Confirm Email Address",
+    "confirmEmailPlaceholder": "Re-enter your email",
+    "phone": "Mobile Phone Number",
+    "phonePlaceholder": "Enter your phone number",
+    "phoneHelp": "Include country code (e.g., +44 for UK)",
+    "errors": {
+      "emailRequired": "Email address is required",
+      "emailInvalid": "Please enter a valid email address",
+      "emailMismatch": "Email addresses do not match",
+      "phoneRequired": "Phone number is required",
+      "phoneInvalid": "Please enter a valid phone number"
+    }
+  },
+  "photo": {
+    "title": "Identity Photo",
+    "description": "Upload a clear photo of your face for identity verification.",
+    "selfie": "Face Photo / Selfie",
+    "selfieDescription": "This will be matched against your passport photo",
+    "requirements": "Photo Requirements",
+    "requirement1": "Face clearly visible, looking straight at camera",
+    "requirement2": "Plain background, good lighting",
+    "requirement3": "No sunglasses, hats, or face coverings",
+    "requirement4": "Recent photo (taken within last 6 months)",
+    "takePhoto": "Take Photo",
+    "uploadPhoto": "Upload Photo",
+    "retake": "Retake",
+    "errors": {
+      "photoRequired": "Face photo is required",
+      "photoTooLarge": "Photo must be less than 5MB",
+      "photoFormat": "Please upload a JPG or PNG image"
+    }
+  },
+  "background": {
+    "title": "Background Questions",
+    "description": "Please answer the following questions honestly. False information may result in your application being refused.",
+    "disclaimer": "These questions are required by UK immigration authorities. Answer truthfully.",
+    "criminal": {
+      "question": "Have you ever been convicted of a criminal offence in any country?",
+      "help": "Include all convictions, even if considered 'spent' or minor"
+    },
+    "immigration": {
+      "question": "Have you ever breached immigration laws in any country?",
+      "help": "This includes overstaying visas or working without permission"
+    },
+    "refusal": {
+      "question": "Have you ever been refused entry to or deported from any country?",
+      "help": "Include any country, not just the UK"
+    },
+    "terrorism": {
+      "question": "Have you ever been involved in or supported terrorist or extremist activities?",
+      "help": "This includes any form of involvement or support"
+    },
+    "warning": "Providing false information is a criminal offence and may result in prosecution.",
+    "errors": {
+      "criminalRequired": "Please answer the criminal conviction question",
+      "immigrationRequired": "Please answer the immigration breach question",
+      "refusalRequired": "Please answer the refusal/deportation question",
+      "terrorismRequired": "Please answer the terrorism question"
+    }
+  },
+  "address": {
+    "title": "Address Information",
+    "description": "Your current residential address.",
+    "line1": "Address Line 1",
+    "line1Placeholder": "Street address, building name",
+    "line2": "Address Line 2",
+    "line2Placeholder": "Apartment, suite, floor (optional)",
+    "city": "City / Town",
+    "cityPlaceholder": "Enter your city",
+    "state": "State / Province / Region",
+    "statePlaceholder": "Enter your state or region",
+    "postcode": "Postal / ZIP Code",
+    "postcodePlaceholder": "Enter your postal code",
+    "country": "Country of Residence",
+    "countryPlaceholder": "Select your country",
+    "errors": {
+      "line1Required": "Address line 1 is required",
+      "cityRequired": "City is required",
+      "postcodeRequired": "Postal code is required",
+      "countryRequired": "Country is required"
+    }
+  },
+  "emergency": {
+    "title": "Emergency Contact",
+    "description": "Someone we can contact in case of emergency (optional but recommended).",
+    "name": "Contact Name",
+    "namePlaceholder": "Full name of emergency contact",
+    "relationship": "Relationship",
+    "relationshipPlaceholder": "e.g., Spouse, Parent, Friend",
+    "phone": "Contact Phone Number",
+    "phonePlaceholder": "Include country code",
+    "skip": "Skip this step"
+  },
+  "review": {
+    "title": "Review & Submit",
+    "description": "Please review your information carefully before proceeding to payment.",
+    "labels": {
+      "issuingCountry": "Country",
+      "passportNumber": "Passport Number",
+      "issueDate": "Issue Date",
+      "expiryDate": "Expiry Date",
+      "issuingAuthority": "Issuing Authority",
+      "fullName": "Name",
+      "dateOfBirth": "Date of Birth",
+      "gender": "Gender",
+      "nationality": "Nationality",
+      "birthCountry": "Birth Country",
+      "email": "Email",
+      "phone": "Phone",
+      "address": "Address",
+      "city": "City",
+      "postcode": "Postcode",
+      "residenceCountry": "Country",
+      "criminalConvictions": "Criminal convictions",
+      "immigrationBreaches": "Immigration breaches",
+      "previousRefusals": "Previous refusals",
+      "terrorismInvolvement": "Terrorism involvement",
+      "emergencyName": "Name",
+      "relationship": "Relationship",
+      "emergencyPhone": "Phone",
+      "photoUploaded": "Photo uploaded",
+      "noPhoto": "No photo uploaded"
+    },
+    "sections": {
+      "passport": "Passport Details",
+      "personal": "Personal Details",
+      "contact": "Contact Details",
+      "photo": "Identity Photo",
+      "background": "Background Checks",
+      "address": "Address",
+      "emergency": "Emergency Contact"
+    },
+    "edit": "Edit",
+    "notProvided": "Not provided",
+    "consent": {
+      "title": "Declarations & Consent",
+      "accuracy": "I confirm that all information provided is accurate and complete to the best of my knowledge.",
+      "submit": "I consent to this information being submitted to UK authorities on my behalf.",
+      "terms": "I have read and accept the Terms of Service and Privacy Policy.",
+      "dataProcessing": "I understand my data will be processed in accordance with UK GDPR requirements."
+    },
+    "errors": {
+      "accuracyRequired": "You must confirm the accuracy of your information",
+      "submitRequired": "You must consent to submission",
+      "termsRequired": "You must accept the terms and privacy policy",
+      "dataRequired": "You must acknowledge the data processing notice"
+    }
+  },
+  "payment": {
+    "title": "Payment",
+    "description": "Complete your payment to submit your ETA application.",
+    "serviceFee": "ETA Service Fee",
+    "processingFee": "Processing Fee",
+    "total": "Total",
+    "secure": "Secure payment powered by Stripe",
+    "methods": "Apple Pay, Google Pay, and card payments accepted",
+    "processing": "Processing payment...",
+    "success": "Payment successful!",
+    "error": "Payment failed. Please try again.",
+    "submit": "Pay & Submit Application"
+  },
+  "confirmation": {
+    "title": "Application Submitted!",
+    "description": "Your ETA application has been received successfully.",
+    "reference": "Reference Number",
+    "referenceHelp": "Save this number for your records",
+    "email": "A confirmation email has been sent to:",
+    "nextSteps": "What happens next?",
+    "step1": "Our team will review and submit your application to UK authorities",
+    "step2": "You will receive status updates via email",
+    "step3": "Most decisions are made within 3 working days",
+    "status": "Check Application Status",
+    "newApplication": "Start New Application"
+  },
+  "countries": {
+    "GB": "United Kingdom",
+    "US": "United States",
+    "TR": "Turkey",
+    "DE": "Germany",
+    "FR": "France",
+    "IT": "Italy",
+    "ES": "Spain",
+    "NL": "Netherlands",
+    "BE": "Belgium",
+    "AT": "Austria",
+    "CH": "Switzerland",
+    "AE": "United Arab Emirates",
+    "SA": "Saudi Arabia",
+    "QA": "Qatar",
+    "KW": "Kuwait",
+    "BH": "Bahrain",
+    "OM": "Oman",
+    "EG": "Egypt",
+    "JO": "Jordan",
+    "LB": "Lebanon",
+    "IN": "India",
+    "PK": "Pakistan",
+    "BD": "Bangladesh",
+    "CN": "China",
+    "JP": "Japan",
+    "KR": "South Korea",
+    "AU": "Australia",
+    "NZ": "New Zealand",
+    "CA": "Canada",
+    "MX": "Mexico",
+    "BR": "Brazil",
+    "AR": "Argentina",
+    "ZA": "South Africa",
+    "NG": "Nigeria",
+    "KE": "Kenya",
+    "OTHER": "Other"
+  },
+  "validation": {
+    "required": "This field is required",
+    "invalidEmail": "Please enter a valid email address",
+    "invalidPhone": "Please enter a valid phone number",
+    "invalidDate": "Please enter a valid date",
+    "fileTooLarge": "File is too large (max 5MB)",
+    "invalidFileType": "Invalid file type"
+  },
+  "footer": {
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "contact": "Contact Us",
+    "copyright": "© {year} UK ETA Service. All rights reserved.",
+    "disclaimer": "This is a third-party ETA application service. We are not affiliated with the UK Government.",
+    "sslSecured": "SSL Secured",
+    "gdprCompliant": "GDPR Compliant"
+  },
+  "statusPage": {
+    "title": "Check Application Status",
+    "subtitle": "Enter your reference number and email to check the status of your ETA application.",
+    "refLabel": "Reference Number",
+    "refHelp": "Found in your confirmation email",
+    "emailLabel": "Email Address",
+    "emailHelp": "The email you used for your application",
+    "checkBtn": "Check Status",
+    "checkingBtn": "Checking...",
+    "notFound": "Application not found. Please check your reference number and email address.",
+    "status": {
+      "draft":     { "label": "Draft",                    "desc": "Your application has been started but payment is pending." },
+      "paid":      { "label": "Paid — Awaiting Submission","desc": "Payment received. Our team will review and submit your application shortly." },
+      "submitted": { "label": "Submitted — Under Review",  "desc": "Your application has been submitted to UK authorities and is being processed." },
+      "approved":  { "label": "Approved",                  "desc": "Congratulations! Your UK ETA has been approved. Check your email for details." },
+      "refused":   { "label": "Refused",                   "desc": "Unfortunately, your application was not approved. Check your email for more information." }
+    },
+    "details": {
+      "reference":   "Reference Number",
+      "applicant":   "Applicant",
+      "submitted":   "Submitted",
+      "lastUpdated": "Last Updated"
+    },
+    "checkAnother":   "Check Another",
+    "contactSupport": "Contact Support",
+    "helpText":       "Can't find your reference number?",
+    "helpLink":       "Contact our support team"
+  },
+  "blog": {
+    "title": "Blog & Guides",
+    "subtitle": "Helpful guides and the latest updates on UK ETA requirements.",
+    "readMore": "Read More",
+    "backToBlog": "← Back to Blog",
+    "publishedOn": "Published",
+    "minRead": "min read",
+    "allArticles": "All Articles",
+    "guides": "Guides",
+    "faq": "FAQ"
+  },
+  "home": {
+    "hero": {
+      "badge": "Fast & Secure ETA Service",
+      "title": "Get Your UK ETA",
+      "titleAccent": "In Minutes",
+      "subtitle": "Apply for your UK Electronic Travel Authorisation quickly and securely. We handle the paperwork, you focus on your trip.",
+      "applyBtn": "Start Application",
+      "howBtn": "How It Works"
+    },
+    "trust": {
+      "ssl": "256-bit SSL",
+      "gdpr": "GDPR Compliant",
+      "applications": "10,000+ Applications",
+      "rating": "4.9/5 Rating"
+    },
+    "features": {
+      "title": "Why Choose Our Service?",
+      "subtitle": "We make the UK ETA application process simple, fast, and stress-free.",
+      "quick": { "title": "Quick Application", "desc": "Complete your ETA application in under 10 minutes with our streamlined form." },
+      "secure": { "title": "Secure & Encrypted", "desc": "256-bit SSL encryption protects your personal data throughout the process." },
+      "multilang": { "title": "Multi-Language Support", "desc": "Apply in your own language — English, Turkish, Arabic, French or Bulgarian." },
+      "support": { "title": "Expert Support", "desc": "Our team reviews every application and handles submission on your behalf." },
+      "docCheck": { "title": "Document Check", "desc": "We verify your documents before submission to avoid rejection." },
+      "payment": { "title": "Flexible Payment", "desc": "Pay securely with card, Apple Pay, or Google Pay." }
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "subtitle": "Four simple steps to get your UK ETA approved.",
+      "step1": { "title": "Fill Application", "desc": "Complete our simple online form with your details" },
+      "step2": { "title": "Upload Documents", "desc": "Provide passport photo and selfie for verification" },
+      "step3": { "title": "Pay Securely", "desc": "Complete payment via card, Apple Pay or Google Pay" },
+      "step4": { "title": "We Submit", "desc": "Our experts review and submit to UK authorities" }
+    },
+    "reviews": {
+      "badge": "4.9 out of 5 — 2,400+ verified reviews",
+      "title": "Trusted by Travellers Worldwide",
+      "subtitle": "Real reviews from real customers who used our service."
+    },
+    "stats": {
+      "applicationsLabel": "Applications processed",
+      "approvalLabel": "Approval rate",
+      "timeLabel": "Average approval time",
+      "ratingLabel": "Customer rating"
+    },
+    "pricing": {
+      "title": "Simple, Transparent Pricing",
+      "subtitle": "One price, everything included. No hidden fees.",
+      "packageName": "ETA Service Package",
+      "feature1": "Full application assistance",
+      "feature2": "Document verification",
+      "feature3": "Expert review before submission",
+      "feature4": "Status tracking & updates",
+      "feature5": "Email support",
+      "feature6": "Money-back if rejected due to our error",
+      "cta": "Start Application Now",
+      "note": "Government ETA fee (£10) paid separately during official processing"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Everything you need to know about the UK ETA.",
+      "q1": { "q": "What is a UK ETA?", "a": "The UK Electronic Travel Authorisation (ETA) is a digital travel permit required for visa-free visitors to the UK. It links to your passport electronically and must be obtained before travel." },
+      "q2": { "q": "Who needs a UK ETA?", "a": "Nationals of countries that don't require a visa to visit the UK will need an ETA. This includes citizens from GCC countries, and will expand to EU citizens and others in 2025." },
+      "q3": { "q": "How long does the ETA last?", "a": "A UK ETA is valid for 2 years or until your passport expires (whichever comes first). It allows multiple visits of up to 6 months each for tourism, business, or transit." },
+      "q4": { "q": "How long does approval take?", "a": "Most ETA applications are processed within 3 working days. However, some applications may take longer if additional checks are required." },
+      "q5": { "q": "What's included in your service fee?", "a": "Our fee covers application review, document verification, submission handling, status tracking, and customer support. The government ETA fee is separate and paid directly." },
+      "q6": { "q": "Is my data secure?", "a": "Absolutely. We use 256-bit SSL encryption, comply with UK GDPR, and never share your data with third parties. Your information is deleted after your application is processed." }
+    },
+    "cta": {
+      "title": "Ready to Apply?",
+      "subtitle": "Start your UK ETA application now and travel with confidence.",
+      "button": "Start Application"
+    }
+  },
+  "about": {
+    "hero": {
+      "title": "About UK ETA Service",
+      "subtitle": "We're a dedicated team helping travelers navigate the UK's Electronic Travel Authorisation system with ease and confidence."
+    },
+    "stats": {
+      "applications": "Applications Processed",
+      "approvalRate": "Approval Rate",
+      "rating": "Customer Rating",
+      "processing": "Avg. Processing Time"
+    },
+    "story": {
+      "title": "Our Story",
+      "p1": "When the UK announced its new Electronic Travel Authorisation requirement, we saw an opportunity to help. Many travelers found the official process confusing, especially those unfamiliar with UK government websites or non-native English speakers.",
+      "p2": "We built this service to bridge that gap. Our team combines expertise in immigration processes with modern technology to create a smooth, guided experience that takes the stress out of applying.",
+      "p3": "Every application is personally reviewed by our team before submission, ensuring accuracy and completeness. We catch potential issues before they become problems, giving you the best chance of approval."
+    },
+    "values": {
+      "title": "Our Values",
+      "subtitle": "What drives us every day.",
+      "security": { "title": "Security First", "desc": "Your data is protected with bank-level encryption. We never share your information with third parties." },
+      "customer": { "title": "Customer Focused", "desc": "We're here to make your travel easier. Our team personally reviews every application." },
+      "excellence": { "title": "Excellence", "desc": "We strive for the highest standards in everything we do, from our technology to our customer service." },
+      "accessibility": { "title": "Accessibility", "desc": "Our service is available in multiple languages to serve travelers from around the world." }
+    },
+    "whatWeDo": {
+      "title": "What We Do",
+      "item1": "Guide you through every step of the ETA application process",
+      "item2": "Verify your documents for accuracy and completeness",
+      "item3": "Submit your application to UK authorities on your behalf",
+      "item4": "Track your application status and keep you informed",
+      "item5": "Provide support if any issues arise",
+      "item6": "Offer refunds if your application is rejected due to our error",
+      "noteTitle": "Important Note",
+      "noteText": "We are an independent service and not affiliated with the UK Government. We provide assistance with ETA applications for a service fee. You can also apply directly through the official UK Government website."
+    },
+    "cta": {
+      "title": "Ready to Get Started?",
+      "subtitle": "Let us help you with your UK ETA application today.",
+      "button": "Start Application"
+    }
+  },
+  "contactPage": {
+    "title": "Contact Us",
+    "subtitle": "Have a question or need help with your application? We're here to assist you.",
+    "emailCard": {
+      "title": "Email Us",
+      "subtitle": "For general inquiries",
+      "address": "support@ukgazete.com"
+    },
+    "responseCard": {
+      "title": "Response Time",
+      "desc": "We typically respond within 24 hours during business days."
+    },
+    "statusCard": {
+      "title": "Check Status",
+      "desc": "Track your application online",
+      "link": "Check Status →"
+    },
+    "form": {
+      "name": "Your Name",
+      "namePlaceholder": "John Smith",
+      "email": "Email Address",
+      "emailPlaceholder": "john@example.com",
+      "reference": "Reference Number",
+      "referenceOptional": "(if applicable)",
+      "referencePlaceholder": "ETA-XXXXXX-XXXX",
+      "subject": "Subject",
+      "subjectPlaceholder": "Select a subject",
+      "message": "Message",
+      "messagePlaceholder": "How can we help you?",
+      "send": "Send Message",
+      "sending": "Sending...",
+      "subjects": {
+        "general": "General Inquiry",
+        "status": "Application Status",
+        "payment": "Payment Issue",
+        "document": "Document Upload Problem",
+        "refund": "Refund Request",
+        "technical": "Technical Support",
+        "other": "Other"
+      }
+    },
+    "success": {
+      "title": "Message Sent!",
+      "desc": "Thank you for contacting us. We'll get back to you within 24 hours.",
+      "confirmation": "A confirmation has been sent to your email.",
+      "sendAnother": "Send Another Message"
+    },
+    "errors": {
+      "turnstile": "Please complete the security verification.",
+      "generic": "Something went wrong. Please try again."
+    }
+  }
+}
