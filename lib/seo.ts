@@ -1,7 +1,7 @@
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') || 'https://ukgazete.com';
 
-export const SITE_NAME = 'UK Visa ETA';
+export const SITE_NAME = 'UK ETA Visa Application Service';
 
 /** All supported locales with their URL prefix and hreflang code */
 export const LOCALE_CONFIGS = [
