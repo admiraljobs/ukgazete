@@ -41,6 +41,12 @@ export const DOMAIN_CONFIGS: DomainConfig[] = [
     label: 'Français',
     flag: '🇫🇷',
   },
+  {
+    domain: 'ukgazete.com',
+    defaultLocale: 'ar',
+    label: 'العربية',
+    flag: '🇦🇪',
+  },
   // ── Add new countries here ──────────────────────────────────────────────
   // { domain: 'ukgazete.ro', defaultLocale: 'ro', label: 'Română', flag: '🇷🇴' },
   // { domain: 'ukgazete.pl', defaultLocale: 'pl', label: 'Polski',  flag: '🇵🇱' },
