@@ -10,13 +10,29 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'statusPage' });
 
+  const titles: Record<string, string> = {
+    en: 'Check UK Visa ETA Application Status',
+    fr: 'Vérifier le statut de votre demande de Visa ETA Royaume-Uni',
+    bg: 'Проверете статуса на вашата UK Visa ETA заявка',
+    tr: 'İngiltere Vize ETA Başvuru Durumunu Kontrol Edin',
+    ar: 'تحقق من حالة طلب تأشيرة ETA المملكة المتحدة',
+  };
+
+  const descs: Record<string, string> = {
+    en: 'Track your UK Visa ETA application in real time. Enter your reference number to check the latest status of your UK visa application.',
+    fr: 'Suivez votre demande de visa ETA Royaume-Uni en temps réel avec votre numéro de référence.',
+    bg: 'Проследете вашата UK Visa ETA заявка в реално време с вашия референтен номер.',
+    tr: 'Referans numaranızla İngiltere Vize ETA başvurunuzu gerçek zamanlı takip edin.',
+    ar: 'تتبع طلب تأشيرة ETA المملكة المتحدة في الوقت الفعلي برقم المرجع الخاص بك.',
+  };
+
   return {
-    title: t('title'),
-    description: t('subtitle'),
+    title: titles[locale] || titles.en,
+    description: descs[locale] || descs.en,
     alternates: buildAlternates('/status'),
     openGraph: {
-      title: `${t('title')} | ${SITE_NAME}`,
-      description: t('subtitle'),
+      title: `${titles[locale] || titles.en} | ${SITE_NAME}`,
+      description: descs[locale] || descs.en,
     },
   };
 }

@@ -11,9 +11,9 @@ export interface BlogPost {
 export const blogPosts: BlogPost[] = [
   {
     slug: 'what-is-uk-eta',
-    title: 'What is a UK ETA? Complete Guide for 2026',
+    title: 'What is a UK Visa ETA? Complete Guide for 2026',
     description:
-      'Everything you need to know about the UK Electronic Travel Authorisation — who needs it, how to apply, and what to expect.',
+      'Everything you need to know about the UK Visa ETA (Electronic Travel Authorisation) — who needs it, how to apply, and what to expect.',
     publishedAt: '2026-01-15',
     readingMinutes: 6,
     category: 'Guides',
@@ -66,9 +66,9 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: 'uk-eta-requirements-documents',
-    title: 'UK ETA Requirements: Documents You Need in 2026',
+    title: 'UK Visa ETA Requirements: Documents You Need in 2026',
     description:
-      'A complete checklist of documents and information required for a UK ETA application, with tips to avoid common mistakes.',
+      'A complete checklist of documents and information required for a UK Visa ETA application, with tips to avoid common mistakes.',
     publishedAt: '2026-01-22',
     readingMinutes: 5,
     category: 'Guides',
@@ -147,7 +147,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: 'how-long-does-uk-eta-take',
-    title: 'How Long Does UK ETA Approval Take?',
+    title: 'How Long Does UK Visa ETA Approval Take?',
     description:
       'Processing times for UK ETA applications explained — typical timelines, what causes delays, and how to avoid them.',
     publishedAt: '2026-02-03',
@@ -191,7 +191,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: 'uk-eta-vs-uk-visa',
-    title: 'UK ETA vs UK Visa: What Is the Difference?',
+    title: 'UK ETA vs UK Visa: What Is the Difference? Complete Comparison',
     description:
       'Understanding the difference between a UK ETA and a UK visa — which one you need, how they compare, and how to apply.',
     publishedAt: '2026-02-14',
@@ -255,7 +255,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: 'uk-eta-step-by-step-guide',
-    title: 'UK ETA Application: Step-by-Step Guide',
+    title: 'UK Visa ETA Application: Step-by-Step Guide for 2026',
     description:
       'A detailed walkthrough of the UK ETA application process — from gathering documents to receiving your approval.',
     publishedAt: '2026-03-01',

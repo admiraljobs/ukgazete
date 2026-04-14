@@ -14,13 +14,29 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'blog' });
+  const blogTitles: Record<string, string> = {
+    en: 'UK Visa & ETA Guides — Travel Tips & Application News',
+    fr: 'Guides Visa & ETA Royaume-Uni — Conseils de voyage',
+    bg: 'UK Visa и ETA ръководства — Съвети за пътуване',
+    tr: 'İngiltere Vize & ETA Rehberleri — Seyahat İpuçları',
+    ar: 'أدلة تأشيرة وETA المملكة المتحدة — نصائح السفر',
+  };
+
+  const blogDescs: Record<string, string> = {
+    en: 'Expert guides on UK visa ETA applications, eligibility, documents, and travel tips. Everything you need to plan your trip to the UK.',
+    fr: 'Guides experts sur les demandes de visa ETA Royaume-Uni, l\'éligibilité et les conseils de voyage.',
+    bg: 'Експертни ръководства за UK visa ETA заявки, изисквания и съвети за пътуване.',
+    tr: 'İngiltere vize ETA başvuruları, uygunluk ve seyahat ipuçları hakkında uzman rehberler.',
+    ar: 'أدلة الخبراء حول طلبات تأشيرة ETA المملكة المتحدة ومتطلباتها ونصائح السفر.',
+  };
+
   return {
-    title: t('title'),
-    description: t('subtitle'),
+    title: blogTitles[locale] || blogTitles.en,
+    description: blogDescs[locale] || blogDescs.en,
     alternates: buildAlternates('/blog'),
     openGraph: {
-      title: `${t('title')} | ${SITE_NAME}`,
-      description: t('subtitle'),
+      title: `${blogTitles[locale] || blogTitles.en} | ${SITE_NAME}`,
+      description: blogDescs[locale] || blogDescs.en,
     },
   };
 }

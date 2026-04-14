@@ -24,11 +24,11 @@ export async function generateMetadata({ params }: RootLayoutProps): Promise<Met
   };
 
   const descriptions: Record<string, string> = {
-    en: 'Apply for your UK Electronic Travel Authorisation (ETA) quickly and securely. Expert review, fast approval, available in 5 languages.',
-    fr: 'Demandez votre Autorisation de Voyage Électronique (AVE) pour le Royaume-Uni rapidement et en toute sécurité.',
-    bg: 'Кандидатствайте за UK Electronic Travel Authorisation (ETA) бързо и сигурно. Експертна проверка, бързо одобрение.',
-    tr: 'İngiltere Elektronik Seyahat İzni (ETA) başvurunuzu hızlı ve güvenli bir şekilde yapın.',
-    ar: 'تقدم بطلب تصريح السفر الإلكتروني للمملكة المتحدة بسرعة وأمان. مراجعة خبراء وموافقة سريعة.',
+    en: 'Apply for your UK Visa ETA (Electronic Travel Authorisation) online. Fast, secure UK visa application service — most approved within 3 working days.',
+    fr: 'Demandez votre visa ETA Royaume-Uni (Autorisation de Voyage Électronique) en ligne. Service rapide et sécurisé, approuvé en 3 jours ouvrables.',
+    bg: 'Кандидатствайте за UK Visa ETA онлайн. Бърза и сигурна услуга за UK виза — одобрение до 3 работни дни.',
+    tr: 'İngiltere Vize ETA başvurunuzu çevrimiçi yapın. Hızlı ve güvenli İngiltere vize başvuru hizmeti — 3 iş günü içinde onay.',
+    ar: 'تقدم بطلب تأشيرة ETA المملكة المتحدة عبر الإنترنت. خدمة تأشيرة UK سريعة وآمنة — الموافقة خلال 3 أيام عمل.',
   };
 
   return {
@@ -39,8 +39,8 @@ export async function generateMetadata({ params }: RootLayoutProps): Promise<Met
     },
     description: descriptions[locale] || descriptions.en,
     keywords: [
-      'UK ETA', 'Electronic Travel Authorisation', 'UK travel permit',
-      'UK visa', 'ETA application', 'travel to UK',
+      'UK visa ETA', 'UK ETA', 'UK visa application', 'Electronic Travel Authorisation',
+      'UK travel visa', 'ETA application', 'UK entry visa', 'apply UK visa online',
     ],
     authors: [{ name: SITE_NAME }],
     robots: {

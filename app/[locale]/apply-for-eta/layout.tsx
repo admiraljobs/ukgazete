@@ -10,20 +10,28 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'header' });
 
+  const applyTitles: Record<string, string> = {
+    en: 'UK Visa ETA Application — Apply Online',
+    fr: 'Demande de Visa ETA Royaume-Uni — Postuler en ligne',
+    bg: 'UK Visa ETA Заявление — Кандидатствайте онлайн',
+    tr: 'İngiltere Vize ETA Başvurusu — Çevrimiçi Başvurun',
+    ar: 'طلب تأشيرة ETA المملكة المتحدة — تقديم عبر الإنترنت',
+  };
+
   const applyDescriptions: Record<string, string> = {
-    en: 'Start your UK ETA application online. Complete the guided form in minutes — expert review included before submission.',
-    fr: 'Commencez votre demande d\'AVE Royaume-Uni en ligne. Formulaire guidé, vérification experte incluse.',
-    bg: 'Започнете вашето заявление за UK ETA онлайн. Ръководен формуляр с експертна проверка.',
-    tr: 'İngiltere ETA başvurunuzu çevrimiçi başlatın. Adım adım rehberli form, uzman incelemesi dahil.',
-    ar: 'ابدأ طلب تصريح السفر الإلكتروني للمملكة المتحدة عبر الإنترنت. نموذج إرشادي مع مراجعة الخبراء.',
+    en: 'Start your UK Visa ETA application online. Complete the guided form in minutes — expert review included before submission to UK authorities.',
+    fr: 'Commencez votre demande de visa ETA Royaume-Uni en ligne. Formulaire guidé, vérification experte incluse avant soumission.',
+    bg: 'Започнете вашата UK Visa ETA заявка онлайн. Ръководен формуляр с експертна проверка преди подаване.',
+    tr: 'İngiltere Vize ETA başvurunuzu çevrimiçi başlatın. Adım adım rehberli form, uzman incelemesi dahil.',
+    ar: 'ابدأ طلب تأشيرة ETA المملكة المتحدة عبر الإنترنت. نموذج إرشادي مع مراجعة الخبراء قبل التقديم.',
   };
 
   return {
-    title: t('nav.apply'),
+    title: applyTitles[locale] || applyTitles.en,
     description: applyDescriptions[locale] || applyDescriptions.en,
     alternates: buildAlternates('/apply-for-eta'),
     openGraph: {
-      title: `${t('nav.apply')} | ${SITE_NAME}`,
+      title: `${applyTitles[locale] || applyTitles.en} | ${SITE_NAME}`,
       description: applyDescriptions[locale] || applyDescriptions.en,
     },
   };
